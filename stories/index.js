@@ -6,6 +6,10 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
+import Form from "components/Pages/form";
+import List from "components/Pages/List";
+import Show from "components/Pages/Show"
+
 
 storiesOf("Button", module)
   .addParameters({
@@ -22,3 +26,19 @@ storiesOf("Button", module)
       Disabled
     </Button>
   ));
+  storiesOf("Form", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Form", () => <Form />)
+  storiesOf("List", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("List", () => <List />)
+  .add("Form", () => <Form />)
+  storiesOf("Show", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Show", () => <Show />)

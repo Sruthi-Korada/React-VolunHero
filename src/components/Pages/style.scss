@@ -1,0 +1,116 @@
+$dark-yellow-color: #FFAE17;
+$light-yellow-color: #FFC43A;
+$second-yellow-color: #FFDA65;
+$turquoise-color: #1AB188;
+$blue-color: #1496bb;
+$white-color: white;
+$body-background: #24313C;
+.formed{
+   border: 0.5em solid $light-yellow-color;
+   width: 400px;
+   height: 400px;  
+    color: black;
+    background-color:$dark-yellow-color;
+}
+.boxed{
+   width: 100%;
+   height: 200px;
+margin-top: 30px;
+}
+.placing{
+    
+    display: flex;
+    justify-content: space-between;
+}
+h2{
+    margin-top: 20px;
+text-align: center;
+}
+
+.sticky {
+    margin-top: 30px;
+    right: 0;
+    z-index: 150;
+    transform: rotate(5deg);
+    width: 300px;
+    min-height: 200px;
+    padding: 10px;
+    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive;
+    font-size: 14px;
+    color: #000;
+    background: rgba(255, 255, 51, 0.8);
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.3);
+  }
+  // .sticky:before, .sticky:after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   width: 60px;
+  //   height: 16px;
+  //   top: 0;
+  //   right: 0;
+  // }
+  // .sticky:before {
+  //   border-top: solid 8px #fff;
+  //   border-right: solid 8px #fff;
+  //   border-left: solid 8px transparent;
+  //   border-bottom: solid 8px transparent;
+  // }
+  // .sticky:after {
+  //   border-bottom: solid 8px #dddd33;
+  //   border-left: solid 8px #dddd33;
+  //   border-right: solid 8px transparent;
+  //   border-top: solid 8px transparent;
+  // }
+  .pad{
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+  }
+  .icons{
+    margin-top: 0px;
+   border-radius: 50%;
+   padding: 20px;
+   background-color: black;
+    width: 150px;
+    height: 150px;
+    img{
+        justify-self: auto;
+        width: 100%;
+        margin: auto;
+    }
+  }
+  .listed{
+    display: inline;
+    margin-left: 20px;
+  }
+  .txt{
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .modal {
+    
+      position:fixed;
+      top:0;
+      left:0;
+      display: flex;
+      width:100%;
+      height:100vh;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      visibility:hidden;
+    }
+    .sp{
+   display: flex;
+   justify-content: space-evenly;
+    }
+    .delete-note {
+      position: absolute;
+      top:5px;
+      right:5px;
+      display: none;
+      color: rgba(0,0,0,0.6);
+      cursor: pointer;
+  }
