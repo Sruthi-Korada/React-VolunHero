@@ -1,70 +1,80 @@
-import React from "react"
-import { TextArea } from 'semantic-ui-react'
-import List from './List';
-import Button from "../Button";
+
+import React from 'react';
 
 class Form extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            workingTitle: '',
-            items: [],
-        }
-        this.addNotes = this.addNotes.bind(this);
+  
+  state = {
+
+  	errorMessage: '',
+  	colour: 'yellow', //default post-it colour
+  	title: '',
+  	content: '',
+    key: '',
+  }
+
+
+ onSubmit = e => {
+    e.preventDefault();
+    if (this.state.title === null) {
+       this.setState ({ errorMessage: 'Title is required'})
+    } else {
+       this.props.createPostit(this.state.colour, this.state.title, this.state.content);
+       this.setState ({ colour: 'yellow', title: '', content: '', key: '', errorMessage: '' })
     }
+    console.log(this.state)
+  }
 
-    addNotes(e) {
-        console.log('working')
-        if (this.theTittle.value !== "") {
-            var newItem = {
-                tittle: this.theTittle.value,
-                note: this.theNote.value
-            }
-            this.setState((prevState) => {
-                return {
-                    items: prevState.items.concat(newItem)
-                }
-            });
-            this.theNote.value = "";
-            this.theTittle.value = "";
-        }
-        e.preventDefault();
-    }
 
-    render() {
-        console.log("this.state:", JSON.stringify(this.state))
-        return (
-            <div className="formed">
-                <header>
-                    <h2>Hello What do you want me to do?</h2>
-                </header>
-                <form onSubmit={this.addNotes}>
-                    <input type="text" placeholder="tittle" ref={(tittle) => this.theTittle = tittle} />
+  render() {
 
-                    {/* <input type="text" placeholder="tittle" value={this.state.workingTitle} onChange={(data) => { console.log('input onchange data', data); this.setState({ workingTitle: data }); }} /> */}
+  return (
+  <div>
 
-                    <textarea className="boxed" placeholder="enter your list" ref={(note) => this.theNote = note} />
-                    <br></br>
-                    <div className="placing">
-                        <Button type="submit" onClick={this.addNotes} confirm>save</Button>
-                        <Button danger>Cancel</Button>
-                    </div>
-                </form>
-                {/* <List>
+{/* Form */}
+        <form className="form">   
+        <h2>Add Post-it Note</h2> 
+        <p>{this.state.errorMessage}</p>
 
-                </List> */}
-                <div className="sticky">
-                    {/* {this.state.items.map((val) => (val.note))} */}
+        <input 
+        list="tittle"
+        className="textfield"
+        placeholder="Title (required*)"
+        value={this.state.title}
+        onChange={e => this.setState({ title: e.target.value})} />
+        <datalist id="tittle">
+        <option value="" disabled selected>Pick-your-service</option>
+        <option >Grocery/Drugs Pickup</option>
+        <option >Pet Groming</option>
+        <option >Gardening</option>
+        <option > Grocery Shopping</option>
+              </datalist>
+          <input 
+            type="text"
+            className="textfield"
+            placeholder="Extra Notes"
+            value={this.state.content}
+            onChange={e => this.setState({ content: e.target.value})} />
 
-                    {this.state.items.map((val) => (
-                        <span>
-                            <h2>{val.tittle}</h2> -
-                            <li>{val.note}</li>
-                        </span>
-                    ))}
-                </div>
-            </div>
-        )
-    }
-}
+{/* Select Animal Dropdown */}
+            <select
+            className="textfield"
+            onChange={e => this.setState({ colour: e.target.value})}>
+            <option value="" disabled selected>Post-it Colour</option>
+            <option value="pink">Pink</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            </select>
+
+           <button 
+          className="mainbtn"
+          onClick={e => this.onSubmit(e)}>Add Post-it</button>
+          
+        </form>
+    </div>
+
+    );
+  }
+  }
+
 export default Form;
