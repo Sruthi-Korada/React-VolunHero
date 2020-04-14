@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './style.scss';
 import Postit from './Postit';
 import UpdateForm from './UpdateForm';
-import Form from './Form'; 
+import Form from './form'; 
 import axios from 'axios'
 
 class Userpage extends Component {
@@ -119,8 +119,13 @@ let editScreen
         updatePostIt={this.updatePostIt}/>
      } else {
    }
-
-
+// axios.post(`http://localhost:8001/api/services/create/`,{
+//   user_id: 1,
+//   category_id: 2, 
+//   description: 'I am stupid'
+// }).then((response) => {
+//   console.log(response);
+// });
 //THE RETURN BLOCK
     return (
       <div>
