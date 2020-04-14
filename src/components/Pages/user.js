@@ -4,26 +4,26 @@ import './style.scss';
 import Postit from './Postit';
 import UpdateForm from './UpdateForm';
 import Form from './Form'; 
-
+import axios from 'axios'
 
 class Userpage extends Component {
   state = {
     postits: [
-    { title: 'grocery', content: 'mustard, tomato, fruit', colour: 'pink', key: '123hj$%656' },
-    { title: 'pet the cat', content: 'scratch behind the airs and sing to him', colour: 'blue' , key: '456k$%6lMy45' },
+    { title: 'grocery', description: 'mustard, tomato, fruit', colour: 'pink', key: '123hj$%656' },
+    { title: 'pet the cat', description: 'scratch behind the airs and sing to him', colour: 'blue' , key: '456k$%6lMy45' },
   ],
   toggleEditScreen: false,
   postToEdit: undefined,
 }
 
 //CREATE POST
-createPostit = (colour, title, content) => {
+createPostit = (colour, title, description) => {
   let postits = [...this.state.postits]
   let newPost = {}
 
   newPost.colour = colour
   newPost.title = title
-  newPost.content = content
+  newPost.description = description
   newPost.key = title + Math.random()
   postits.push(newPost)
   this.setState ({ postits: postits})
@@ -46,12 +46,12 @@ findPostToEdit = (key) => {
 }
 
 //UPDATE POST
-updatePostIt = (colour, title, content) => {
+updatePostIt = (colour, title, description) => {
   let postits = [...this.state.postits]
   let postToEdit = this.state.postToEdit
   postToEdit.colour = colour
   postToEdit.title = title
-  postToEdit.content = content
+  postToEdit.description = description
   postToEdit.key = title + Math.random()
   postits.push(postToEdit)
 this.setState ({ postits: postits, toggleEditScreen: false})
@@ -96,7 +96,7 @@ render() {
           return <Postit
           colour={p.colour}
           title={p.title}
-          content={p.content}
+          description={p.description}
           key={p.key}
           onClick={(key) => this.findPostToEdit(p.key)}
           onDragStart={(key) => this.onDragStart(p.key)}/>
@@ -114,7 +114,7 @@ let editScreen
         <UpdateForm 
         colour={this.state.postToEdit.colour}
         title={this.state.postToEdit.title}
-        content={this.state.postToEdit.content}
+        description={this.state.postToEdit.description}
         key={this.state.postToEdit.key} 
         updatePostIt={this.updatePostIt}/>
      } else {
@@ -140,14 +140,12 @@ let editScreen
          <div className="trash-can"
          onDrop={() => this.onDrop()}
          onDragOver={(e) => this.onDragOver(e)}>
-      <h2 className="align"> 🗑️ </h2>
-      <h4> drag & Drop</h4>
+         <h2 className="align"> 🗑️ </h2>
+         <h4> drag & Drop</h4>
         </div>
-      </div>
-
+         </div>
         </header>
-
-        <ul>
+         <ul>
           {postits}
         </ul>
           {editScreen}

@@ -8,7 +8,7 @@ class Form extends React.Component {
   	errorMessage: '',
   	colour: 'yellow', //default post-it colour
   	title: '',
-  	content: '',
+  	description: '',
     key: '',
   }
 
@@ -18,8 +18,8 @@ class Form extends React.Component {
     if (this.state.title === null) {
        this.setState ({ errorMessage: 'Title is required'})
     } else {
-       this.props.createPostit(this.state.colour, this.state.title, this.state.content);
-       this.setState ({ colour: 'yellow', title: '', content: '', key: '', errorMessage: '' })
+       this.props.createPostit(this.state.colour, this.state.title, this.state.description);
+       this.setState ({ colour: 'yellow', title: '', description: '', key: '', errorMessage: '' })
     }
     console.log(this.state)
   }
@@ -52,8 +52,8 @@ class Form extends React.Component {
             type="text"
             className="textfield"
             placeholder="Extra Notes"
-            value={this.state.content}
-            onChange={e => this.setState({ content: e.target.value})} />
+            value={this.state.description}
+            onChange={e => this.setState({ description: e.target.value})} />
 
 {/* Select Animal Dropdown */}
             <select

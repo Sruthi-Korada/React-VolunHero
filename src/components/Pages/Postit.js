@@ -16,7 +16,7 @@ return (
     <ul>
       
       <h3>{props.title}</h3>
-      <li>{props.content}</li>
+      <li>{props.description}</li>
       <h3>{props.date}</h3>
       <button className="smallbtn" onClick={() => props.onClick(props.key)}>Update</button>
       

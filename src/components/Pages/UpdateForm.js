@@ -6,13 +6,13 @@ class UpdateForm extends React.Component {
 
   	colour: this.props.colour,
   	title: this.props.title,
-  	content: this.props.content,
+  	description: this.props.description,
 
   }
 
     onSubmit = e => {
     e.preventDefault();
-    this.props.updatePostIt(this.state.colour, this.state.title, this.state.content);
+    this.props.updatePostIt(this.state.colour, this.state.title, this.state.description);
   }
 
 
@@ -42,9 +42,9 @@ render() {
           <input 
             type="text"
             className="textfield"
-            placeholder="Content"
-            value={this.state.content}
-            onChange={e => this.setState({ content: e.target.value})} />  <br />
+            placeholder="description"
+            value={this.state.description}
+            onChange={e => this.setState({ description: e.target.value})} />  <br />
 
            <button 
           className="mainbtn"
