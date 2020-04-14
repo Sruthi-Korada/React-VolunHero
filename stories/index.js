@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
-import Form from "components/Pages/form";
+import Form from "components/Pages/Form";
 import List from "components/Pages/List";
 import Show from "components/Pages/Show"
 
@@ -36,9 +36,9 @@ storiesOf("Button", module)
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("List", () => <List />)
-  .add("Form", () => <Form />)
+  .add("Form", () => <Form onSave={action("onSave")} onCancel={action("onCancel")}/>)
   storiesOf("Show", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-  .add("Show", () => <Show />)
+  .add("Show", () => <Show tittle={"grocery"} note={"helloooo"} />)
