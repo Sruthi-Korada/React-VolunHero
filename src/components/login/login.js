@@ -19,6 +19,7 @@ import { Redirect} from "react-router-dom"
         login(e) {
         e.preventDefault()
         const { username, password } = this.state
+        //
         if(username === "A" && password === "B")
         this.setState({
           loggedIn: true
