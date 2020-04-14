@@ -6,8 +6,8 @@ import Userpage from "components/Pages/user"
 import volunteerpage from "components/admin/volunteer"
 
 class Application extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
       <Router>
       <div>
       <Route exact path='/' component = {Homepage}/>
@@ -15,7 +15,7 @@ class Application extends React.Component {
       <Route exact path='/volunteerpage' component ={volunteerpage}/>
       </div>
       </Router>
-    )
+    );
   }
 }
 export default Application;
