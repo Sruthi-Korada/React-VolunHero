@@ -7,6 +7,7 @@ import Form from './form';
 import axios from 'axios'
 
 class Userpage extends Component {
+
   state = {
     postits: [
     { title: 'grocery', description: 'mustard, tomato, fruit', colour: 'pink', key: '123hj$%656' },
@@ -18,6 +19,7 @@ class Userpage extends Component {
 
 //CREATE POST
 createPostit = (colour, title, description) => {
+
   let postits = [...this.state.postits]
   let newPost = {}
 
@@ -27,6 +29,7 @@ createPostit = (colour, title, description) => {
   newPost.key = title + Math.random()
   postits.push(newPost)
   this.setState ({ postits: postits})
+
 } 
 
 //Need to: Refractor & combine with onDragStart
@@ -86,8 +89,40 @@ onDrop = () => {
     }})
   this.setState ({ postits: newPostitsArray })
 }
-
-
+// componentDidMount() {
+//   console.log('working')
+// axios.post(`http://localhost:8001/api/services/create`,{
+//  data
+// }).then((response) => {
+//   console.log(response)
+  
+// })
+// .catch((error) =>{
+//   console.log(error.message);
+// })
+// }
+componentDidMount() {
+  const data ={
+  user_id: 1,
+  category_id: 2, 
+  description: 'Hello world'
+  }
+fetch('http://localhost:8001/api/services/create',{
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data)
+})
+.then((response) => response.json())
+.then((data) => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+ 
+}
 render() {
  
  let postits = (
@@ -119,13 +154,7 @@ let editScreen
         updatePostIt={this.updatePostIt}/>
      } else {
    }
-// axios.post(`http://localhost:8001/api/services/create/`,{
-//   user_id: 1,
-//   category_id: 2, 
-//   description: 'I am stupid'
-// }).then((response) => {
-//   console.log(response);
-// });
+
 //THE RETURN BLOCK
     return (
       <div>
