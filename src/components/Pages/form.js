@@ -20,11 +20,29 @@ class Form extends React.Component {
     } else {
        this.props.createPostit(this.state.colour, this.state.title, this.state.description);
        this.setState ({ colour: 'yellow', title: '', description: '', key: '', errorMessage: '' })
+       const data ={
+        user_id: 1,
+        category_id: 2, 
+        description: this.state.description
+        }
+      fetch('http://localhost:8001/api/services/create',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
     console.log(this.state)
   }
-
-
+ 
   render() {
 
   return (

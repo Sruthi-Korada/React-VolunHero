@@ -88,6 +88,12 @@ onDrop = () => {
     } else {
     }})
   this.setState ({ postits: newPostitsArray })
+  const data ={
+    user_id: 1,
+    category_id: 2, 
+    description: postits
+    }
+  
 }
 // componentDidMount() {
 //   console.log('working')
@@ -101,28 +107,7 @@ onDrop = () => {
 //   console.log(error.message);
 // })
 // }
-componentDidMount() {
-  const data ={
-  user_id: 1,
-  category_id: 2, 
-  description: 'Hello world'
-  }
-fetch('http://localhost:8001/api/services/create',{
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data)
-})
-.then((response) => response.json())
-.then((data) => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
- 
-}
+
 render() {
  
  let postits = (
