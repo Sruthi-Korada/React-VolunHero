@@ -28,7 +28,7 @@ export default class volunteerpage extends Component {
         console.log(res1.services);
         const services = res1.services;
         const users = res2.users;
-        console.log("thisis the email jasmineeblahblah", users[0].email);
+        console.log("thisis the email jasmineeblahblah", users[4].email);
         const categories = res3.categories;
         this.setState({ services, users, categories });
       })
@@ -51,6 +51,7 @@ export default class volunteerpage extends Component {
                 <th>name</th>
                 <th>services</th>
                 <th>category_id</th>
+                <th>Address</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -60,6 +61,7 @@ export default class volunteerpage extends Component {
                   <td>{member.name} </td>
                   <td>{member.description}</td>
                   <td>{member.category_id}</td>
+                  <td>{member.address}</td>
                   <td>
                     <a>Accept</a>|<a>Complete</a>
                   </td>

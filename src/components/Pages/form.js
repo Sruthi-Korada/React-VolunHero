@@ -21,8 +21,8 @@ class Form extends React.Component {
        this.props.createPostit(this.state.colour, this.state.title, this.state.description);
        this.setState ({ colour: 'yellow', title: '', description: '', key: '', errorMessage: '' })
        const data ={
-        user_id: 1,
-        category_id: 2, 
+        user_id: 3,
+        category_id: 4, 
         description: this.state.description
         }
       fetch('http://localhost:8001/api/services/create',{

@@ -88,12 +88,8 @@ onDrop = () => {
     } else {
     }})
   this.setState ({ postits: newPostitsArray })
-  const data ={
-    user_id: 1,
-    category_id: 2, 
-    description: postits
-    }
-  
+ 
+ 
 }
 // componentDidMount() {
 //   console.log('working')
