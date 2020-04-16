@@ -11,6 +11,9 @@ export default class volunteerpage extends Component {
       categories: {},
     };
   }
+  setAccept(){
+
+  }
   componentDidMount() {
     console.log("reloaded");
     Promise.all([
@@ -52,6 +55,9 @@ export default class volunteerpage extends Component {
                 <th>services</th>
                 <th>category_id</th>
                 <th>Address</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>PhoneNumber</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -62,6 +68,9 @@ export default class volunteerpage extends Component {
                   <td>{member.description}</td>
                   <td>{member.category_id}</td>
                   <td>{member.address}</td>
+                  <td>{member.city}</td>
+                  <td>{member.country}</td>
+                  <td>{member.phone}</td>
                   <td>
                     <a>Accept</a>|<a>Complete</a>
                   </td>
