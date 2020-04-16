@@ -53,7 +53,7 @@ export default class volunteerpage extends Component {
               <tr>
                 <th>name</th>
                 <th>services</th>
-                <th>category_id</th>
+                <th>category</th>
                 <th>Address</th>
                 <th>City</th>
                 <th>Country</th>
