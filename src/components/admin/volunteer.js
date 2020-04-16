@@ -14,54 +14,31 @@ export default class volunteerpage extends Component {
   }
 
   componentDidMount() {
-    let self = this;
     console.log("reloaded");
     Promise.all([
-      fetch(`http://localhost:8001/api/services/`),
+      fetch(`http://localhost:8001/api/services/withuserinfo`),
       fetch(`http://localhost:8001/api/users/`),
       fetch(`http://localhost:8001/api/categories/`),
     ])
-      .then(function (response) {
-        if (response.status >= 400) {
-          throw new Error("Bad response from server");
-        }
-        console.log(response.data);
-        return response.data.services;
+      .then(([res1, res2, res3]) => {
+        return Promise.all([res1.json(), res2.json(), res3.json()]);
       })
-      .then(function (data) {
-        self.setState({ services: data });
+      .then(([res1, res2, res3, res4]) => {
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        // console.log(res1, res2, res3);
+        // set state in here
+        console.log(res1.services);
+        const services = res1.services;
+        const users = res2.users;
+        console.log("thisis the email jasmineeblahblah", users[0].email);
+        const categories = res3.categories;
+
+        this.setState({ services, users, categories });
       })
       .catch((err) => {
         console.log("caught it!", err);
       });
   }
-
-  // useEffect(() => {
-  // let self = this;
-  //   Promise.all([
-  //     axios.get("http://localhost:8001/api/services/"),
-  //     axios.get("http://localhost:8001/api/users/"),
-  //     axios.get("http://localhost:8001/api/categories/"),
-  //   ]).then((all) => {
-  //     this.state((state) => ({
-  //       ...state,
-  //       services: all[0].data,
-  //       users: all[1].data,
-  //       categories: all[2].data,
-  //     }));
-  //   });
-  // }, []);
-  //     if (response.status >= 400) {
-  //       throw new Error("Bad response from server");
-  //     }
-  //     console.log(response.data);
-  //     return response.data.services;
-  //   })
-  //   .then(function (data) {
-  //     self.setState({ services: data });
-  //   })
-  //   .catch((err) => {
-  //     console.log("caught it!", err);
 
   render() {
     return (
@@ -75,18 +52,20 @@ export default class volunteerpage extends Component {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th>user_id</th>
+                <th>Name</th>
+                <th>Address</th>
                 <th>services</th>
-                <th>category_id</th>
+                <th>Category</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {this.state.services.map((member) => (
                 <tr key={member.id}>
-                  <td>{member.user_id} </td>
+                  <td>{member.name} </td>
+                  <td>{member.address} </td>
                   <td>{member.description}</td>
-                  <td>{member.category_id}</td>
+                  <td>{member.category}</td>
                   <td>
                     <a>Accept</a>|<a>Complete</a>
                   </td>
