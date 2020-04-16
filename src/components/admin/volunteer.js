@@ -66,7 +66,7 @@ export default class volunteerpage extends Component {
                 <tr key={member.id}>
                   <td>{member.name} </td>
                   <td>{member.description}</td>
-                  <td>{member.category_id}</td>
+                  <td>{member.category}</td>
                   <td>{member.address}</td>
                   <td>{member.city}</td>
                   <td>{member.country}</td>
