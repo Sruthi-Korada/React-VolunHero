@@ -52,6 +52,7 @@ export default class volunteerpage extends Component {
             <thead>
               <tr>
                 <th>name</th>
+                <th>email</th>
                 <th>services</th>
                 <th>category</th>
                 <th>Address</th>
@@ -65,6 +66,7 @@ export default class volunteerpage extends Component {
               {this.state.services.map((member) => (
                 <tr key={member.id}>
                   <td>{member.name} </td>
+                  <td>{member.email} </td>
                   <td>{member.description}</td>
                   <td>{member.category}</td>
                   <td>{member.address}</td>
