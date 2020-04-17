@@ -10,6 +10,8 @@ class Form extends React.Component {
   	title: '',
   	description: '',
     key: '',
+    categories: [],
+    category_id: 0,
   }
 
 
@@ -20,10 +22,44 @@ class Form extends React.Component {
     } else {
        this.props.createPostit(this.state.colour, this.state.title, this.state.description);
        this.setState ({ colour: 'yellow', title: '', description: '', key: '', errorMessage: '' })
+       const data ={
+        user_id: 3,
+        category_id: 4,
+        description: this.state.description
+        }
+      fetch('http://localhost:8001/api/services/create',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
     console.log(this.state)
   }
 
+ componentDidMount = e =>{
+    fetch(`http://localhost:8001/api/categories/`)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      const categories = res.categories;
+      console.log("categories", categories);
+      this.setState({categories});
+    })
+    .catch((err) => {
+      console.log("caught it!", err);
+    });
+  
+  }
 
   render() {
 
@@ -34,19 +70,17 @@ class Form extends React.Component {
         <form className="form">   
         <h2>Add Post-it Note</h2> 
         <p>{this.state.errorMessage}</p>
-
         <input 
         list="tittle"
         className="textfield"
         placeholder="Title (required*)"
         value={this.state.title}
-        onChange={e => this.setState({ title: e.target.value})} />
+        onChange={e => this.setState({ tittle: e.target.tittle})}/>
         <datalist id="tittle">
         <option value="" disabled selected>Pick-your-service</option>
-        <option >Grocery/Drugs Pickup</option>
-        <option >Pet Groming</option>
-        <option >Gardening</option>
-        <option > Grocery Shopping</option>
+       {this.state.categories.map((item) =>
+<option key ={item.id} >{item.category}</option>
+ )}
               </datalist>
           <input 
             type="text"

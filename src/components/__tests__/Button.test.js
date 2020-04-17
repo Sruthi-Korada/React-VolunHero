@@ -2,38 +2,38 @@ import React from "react";
 
 import { render, cleanup, fireEvent } from "@testing-library/react";
 
-import Button from "components/Button";
+import ButtonOld from "components/Button";
 
 afterEach(cleanup);
 
 it("renders without crashing", () => {
-  render(<Button />);
+  render(<ButtonOld />);
 });
 
 it.skip("renders its `children` prop as text", () => {
-  const { getByText } = render(<Button>Default</Button>);
+  const { getByText } = render(<ButtonOld>Default</ButtonOld>);
   expect(getByText("Default")).toBeInTheDocument();
 });
 
 it.skip("renders a default button style", () => {
-  const { getByText } = render(<Button>Default</Button>);
+  const { getByText } = render(<ButtonOld>Default</ButtonOld>);
   expect(getByText("Default")).toHaveClass("button");
 });
 
 it.skip("renders a confirm button", () => {
-  const { getByText } = render(<Button confirm>Confirm</Button>);
+  const { getByText } = render(<ButtonOld confirm>Confirm</ButtonOld>);
   expect(getByText("Confirm")).toHaveClass("button--confirm");
 });
 
 it.skip("renders a danger button", () => {
-  const { getByText } = render(<Button danger>Danger</Button>);
+  const { getByText } = render(<ButtonOld danger>Danger</ButtonOld>);
   expect(getByText("Danger")).toHaveClass("button--danger");
 });
 
 it.skip("renders a clickable button", () => {
   const handleClick = jest.fn();
   const { getByText } = render(
-    <Button onClick={handleClick}>Clickable</Button>
+    <ButtonOld onClick={handleClick}>Clickable</ButtonOld>
   );
 
   const button = getByText("Clickable");
@@ -46,9 +46,9 @@ it.skip("renders a clickable button", () => {
 it.skip("renders a disabled button", () => {
   const handleClick = jest.fn();
   const { getByText } = render(
-    <Button disabled onClick={handleClick}>
+    <ButtonOld disabled onClick={handleClick}>
       Disabled
-    </Button>
+    </ButtonOld>
   );
 
   const button = getByText("Disabled");
