@@ -1,6 +1,6 @@
 import React from "react";
 import loginImg from "./head.png";
-import Button from 'components/Button';
+import {Button} from 'react-bootstrap'
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ export default class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-        <Button onClick={onclick}confirm>Register</Button>
+        <Button  variant={'primary'} onClick={onclick} confirm>Register</Button>
         </div>
         </div>
       </div>
