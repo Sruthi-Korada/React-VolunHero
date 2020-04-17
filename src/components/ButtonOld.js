@@ -1,9 +1,9 @@
 import React from "react";
 
-import "components/Button.scss";
+import "components/ButtonOld.scss";
 import classnames from 'classnames';
 
-export default function Button(props) {
+export default function ButtonOld(props) {
   const buttonClass = classnames("button", {
     "button--confirm": props.confirm,
     "button--danger": props.danger

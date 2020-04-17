@@ -1,5 +1,6 @@
 import React from "react";
-import Button from 'components/Button';
+//import ButtonOld from 'components/Button';
+import {Button} from 'react-bootstrap'
 import loginImg from "./head.png";
 import { Redirect} from "react-router-dom"
 import axios from "axios";
@@ -76,7 +77,7 @@ import axios from "axios";
               
                 <div className="footer">
                
-                <Button type="submit" value="login" onClick={this.login}confirm>login</Button>
+                <Button  variant={'primary'} type="submit" value="login" onClick={this.login} confirm>login</Button>
                </div>
               
                 

@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import "index.scss";
 
-import Button from "components/Button";
+import ButtonOld from "components/Button";
 import Form from "components/Pages/Form";
 import List from "components/Pages/List";
 import Show from "components/Pages/Show"
@@ -15,16 +15,16 @@ storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
-  .add("Base", () => <Button>Base</Button>)
-  .add("Confirm", () => <Button confirm>Confirm</Button>)
-  .add("Danger", () => <Button danger>Cancel</Button>)
+  .add("Base", () => <ButtonOld>Base</ButtonOld>)
+  .add("Confirm", () => <ButtonOld confirm>Confirm</ButtonOld>)
+  .add("Danger", () => <ButtonOld danger>Cancel</ButtonOld>)
   .add("Clickable", () => (
-    <Button onClick={action("button-clicked")}>Clickable</Button>
+    <ButtonOld onClick={action("button-clicked")}>Clickable</ButtonOld>
   ))
   .add("Disabled", () => (
-    <Button disabled onClick={action("button-clicked")}>
+    <ButtonOld disabled onClick={action("button-clicked")}>
       Disabled
-    </Button>
+    </ButtonOld>
   ));
   storiesOf("Form", module)
   .addParameters({
