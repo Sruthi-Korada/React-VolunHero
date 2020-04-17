@@ -9,152 +9,116 @@ import axios from "axios";
 class Userpage extends Component {
   state = {
     postits: [
-      {
-        title: "grocery",
-        description: "mustard, tomato, fruit",
-        colour: "pink",
-        key: "123hj$%656",
-      },
-      {
-        title: "pet the cat",
-        description: "scratch behind the airs and sing to him",
-        colour: "blue",
-        key: "456k$%6lMy45",
-      },
-    ],
-    toggleEditScreen: false,
-    postToEdit: undefined,
-  };
+    { title: 'grocery', description: 'mustard, tomato, fruit', colour: 'pink', key: '123hj$%656' },
+    { title: 'pet the cat', description: 'scratch behind the airs and sing to him', colour: 'blue' , key: '456k$%6lMy45' },
+  ],
+  toggleEditScreen: false,
+  postToEdit: undefined,
+}
 
-  //CREATE POST
-  createPostit = (colour, title, description) => {
-    let postits = [...this.state.postits];
-    let newPost = {};
+//CREATE POST
+createPostit = (colour, title, description) => {
 
-    newPost.colour = colour;
-    newPost.title = title;
-    newPost.description = description;
-    newPost.key = title + Math.random();
-    postits.push(newPost);
-    this.setState({ postits: postits });
-  };
+  let postits = [...this.state.postits]
+  let newPost = {}
 
-  //Need to: Refractor & combine with onDragStart
-  //FINDS POST AND SAVES IT READT FOR EDIT, AND TOGGLES EDIT SCREEN
-  findPostToEdit = (key) => {
-    let newPostitsArray = [];
-    let postits = [...this.state.postits];
-    let postToEdit = {};
+  newPost.colour = colour
+  newPost.title = title
+  newPost.description = description
+  newPost.key = title + Math.random()
+  postits.push(newPost)
+  this.setState ({ postits: postits})
 
-    postits.forEach((post) => {
-      if (post.key !== key) {
-        newPostitsArray.push(post);
-      } else {
-        postToEdit = post;
-      }
-    });
-    this.setState({
-      postits: newPostitsArray,
-      postToEdit: postToEdit,
-      toggleEditScreen: true,
-    });
-  };
+} 
 
-  //UPDATE POST
-  updatePostIt = (colour, title, description) => {
-    let postits = [...this.state.postits];
-    let postToEdit = this.state.postToEdit;
-    postToEdit.colour = colour;
-    postToEdit.title = title;
-    postToEdit.description = description;
-    postToEdit.key = title + Math.random();
-    postits.push(postToEdit);
-    this.setState({ postits: postits, toggleEditScreen: false });
-  };
+//Need to: Refractor & combine with onDragStart
+//FINDS POST AND SAVES IT READT FOR EDIT, AND TOGGLES EDIT SCREEN
+findPostToEdit = (key) => {
+  let newPostitsArray = []
+  let postits = [...this.state.postits]
+  let postToEdit = {}
+  
+  postits.forEach((post) => {
+    if (post.key !== key) {
+     newPostitsArray.push(post)
+    } else {
+     postToEdit = post
+    }})
+  this.setState ({ postits: newPostitsArray, postToEdit: postToEdit, toggleEditScreen: true })
+}
 
-  // Need to: Refractor & combine with findPostToEdit
-  // FINDS DRAGGED POST AND SAVES IT READY FOR DELETE
-  onDragStart = (key) => {
-    let newPostitsArray = [];
-    let postits = [...this.state.postits];
-    let postToEdit = {};
-    postits.forEach((post) => {
-      if (post.key === key) {
-        postToEdit = post;
-      }
-      this.setState({ postToEdit: postToEdit });
-    });
-  };
+//UPDATE POST
+updatePostIt = (colour, title, description) => {
+  let postits = [...this.state.postits]
+  let postToEdit = this.state.postToEdit
+  postToEdit.colour = colour
+  postToEdit.title = title
+  postToEdit.description = description
+  postToEdit.key = title + Math.random()
+  postits.push(postToEdit)
+this.setState ({ postits: postits, toggleEditScreen: false})
+}
 
-  onDragOver = (e) => {
-    e.preventDefault();
-  };
+// Need to: Refractor & combine with findPostToEdit
+// FINDS DRAGGED POST AND SAVES IT READY FOR DELETE
+onDragStart = (key) => {
+  let newPostitsArray = []
+  let postits = [...this.state.postits]
+  let postToEdit = {}
+  postits.forEach((post) => {
+    if (post.key === key) {
+     postToEdit = post
+    }
+  this.setState ({ postToEdit: postToEdit })
+})}
 
-  //DELETES POST OnDrop
-  onDrop = () => {
-    let key = this.state.postToEdit.key;
-    let newPostitsArray = [];
-    let postits = [...this.state.postits];
-    postits.forEach((post) => {
-      if (post.key !== key) {
-        newPostitsArray.push(post);
-      } else {
-      }
-    });
-    this.setState({ postits: newPostitsArray });
-  };
-  // componentDidMount() {
-  //   console.log('working')
-  // axios.post(`http://localhost:8001/api/services/create`,{
-  //  data
-  // }).then((response) => {
-  //   console.log(response)
+onDragOver = (e) => {
+  e.preventDefault()
+}
 
-  // })
-  // .catch((error) =>{
-  //   console.log(error.message);
-  // })
-  // }
-  componentDidMount() {
-    const data = {
-      user_id: 1,
-      category_id: 2,
-      description: "Hello world",
-    };
-    fetch("http://localhost:8001/api/services/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-  render() {
-    let postits = (
-      <div>
-        {this.state.postits
-          .map((p) => {
-            return (
-              <Postit
-                colour={p.colour}
-                title={p.title}
-                description={p.description}
-                key={p.key}
-                onClick={(key) => this.findPostToEdit(p.key)}
-                onDragStart={(key) => this.onDragStart(p.key)}
-              />
-            );
-          })
-          //reversing the array so the latest postit shows first
-          .reverse()}
-      </div>
+//DELETES POST OnDrop
+onDrop = () => {
+  let key = this.state.postToEdit.key
+  let newPostitsArray = []
+  let postits = [...this.state.postits]
+  postits.forEach((post) => {
+    if (post.key !== key) {
+     newPostitsArray.push(post)
+    } else {
+    }})
+  this.setState ({ postits: newPostitsArray })
+ 
+ 
+}
+// componentDidMount() {
+//   console.log('working')
+// axios.post(`http://localhost:8001/api/services/create`,{
+//  data
+// }).then((response) => {
+//   console.log(response)
+  
+// })
+// .catch((error) =>{
+//   console.log(error.message);
+// })
+// }
+
+render() {
+ 
+ let postits = (
+       <div>
+        {this.state.postits.map((p) => {
+          return <Postit
+          colour={p.colour}
+          title={p.title}
+          description={p.description}
+          key={p.key}
+          onClick={(key) => this.findPostToEdit(p.key)}
+          onDragStart={(key) => this.onDragStart(p.key)}/>
+        })
+//reversing the array so the latest postit shows first
+        .reverse()} 
+      </div> 
     );
 
     //EDIT SCREEN VIEW

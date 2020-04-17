@@ -33,7 +33,8 @@ import axios from "axios";
         const { email, password } = this.state
         if(email === "sruthikorada@gmail.com" && password === "password")
         this.setState({
-          userLoggedIn: true
+          userLoggedIn: true,
+          volLoggedIn: true
         })
         if(email ==="volunteer@gmail.com" && password ==="password")
         this.setState({
