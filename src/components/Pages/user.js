@@ -137,7 +137,7 @@ class Userpage extends Component {
     render() {
         console.log('posits', this.state.postits);
         let postits = (
-            <div>
+            <React.Fragment>
                 {this.state.postits && this.state.postits
                     .map((p) => {
                         if (p.user_id === 3)
@@ -156,7 +156,7 @@ class Userpage extends Component {
                     })
                     //reversing the array so the latest postit shows first
                     .reverse()}
-            </div>
+            </React.Fragment>
         );
 
         //EDIT SCREEN VIEW

@@ -111,19 +111,7 @@ class RequestForm extends React.Component {
                             />
                         </Col>
                     </Row>
-                    <Form.Control
-                        as="select"
-                        className="textfield"
-                        onChange={(e) => this.setState({colour: e.target.value})}
-                    >
-                        <option value="" disabled selected>
-                            Post-it Colour
-                        </option>
-                        <option value="pink">Pink</option>
-                        <option value="blue">Blue</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="green">Green</option>
-                    </Form.Control>
+
                     <button
                         className="btn__post"
                         type="submit"
