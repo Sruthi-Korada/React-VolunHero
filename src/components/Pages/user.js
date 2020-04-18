@@ -180,7 +180,7 @@ class Userpage extends Component {
             <React.Fragment>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                   {/* <Navbar.Brand href="">@VolunHero</Navbar.Brand>*/}
+
                 </Navbar>
                 <div className="hero__banner">
                     <div className="form__container">

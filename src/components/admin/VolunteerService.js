@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Table, Button, Navbar } from "react-bootstrap";
 import axios from 'axios';
 import Logo from '../Pages/volun--hero.png';
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
-export default class volunteerpage extends Component {
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+export default class VolunteerService extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +15,11 @@ export default class volunteerpage extends Component {
     }
 
     componentDidMount() {
-     this.apicall()
+        this.fetchVolunteersService()
     }
-    apicall(){
+    fetchVolunteersService(){
         Promise.all([
-            fetch(`http://localhost:8001/api/services/withuserinfo`),
+            fetch(`http://localhost:8001/api/services/volunteerservices`),
             //fetch("http://localhost:8001/services"),
         ])
             .then(([res1]) => {
@@ -39,8 +39,8 @@ export default class volunteerpage extends Component {
 
         const id = Number(e.target.value);
 
-        const data = JSON.stringify({user_id:id , id: userInfo.id })
-        fetch('http://localhost:8001/api/services/accepted', {
+        const data = JSON.stringify({id: userInfo.id })
+        fetch('http://localhost:8001/api/services/complete', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',       // receive json
@@ -49,26 +49,20 @@ export default class volunteerpage extends Component {
             body: data
         })
             .then(res => res.json())
-            .then(data =>this.apicall())
+            .then(data => this.fetchVolunteersService())
     };
 
-    onComplete = () => {
-        axios.get(`http://localhost:8001/api/services/volunteerservices`)
-            .then((res) =>{
-                console.log(res)
-            })
-    };
 
     render() {
         return (
             <div>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                    <Link to="/vounteerservice">AcceptedService</Link> <span className="menu__divider">|</span>
+                    <Link to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
                     <Link to="/completedservice">CompletedService</Link>
                 </Navbar>
                 <div style={{ padding: 20 }}>
-                    <Table responsive variant="dark">
+                    <Table responsive>
                         <thead>
                         <tr>
                             <th>S.No.</th>
@@ -103,7 +97,7 @@ export default class volunteerpage extends Component {
                                         }}
                                         value={'1'}
                                     >
-                                        {member.volunteer_user_id == 1 ? 'Complete': 'Accept'}
+                                        Complete
                                     </Button>
                                     {/*{"  "}
                                     <Button

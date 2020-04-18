@@ -12,7 +12,11 @@
 * {
   box-sizing: border-box;
 }
-
+.menu__divider{
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 body {
   font-family: $font-family;
 }
@@ -37,3 +41,4 @@ body {
     font-size: 10px;
   }
 }
+

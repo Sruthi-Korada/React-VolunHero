@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Table, Button, Navbar } from "react-bootstrap";
 import axios from 'axios';
 import Logo from '../Pages/volun--hero.png';
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
-export default class volunteerpage extends Component {
+import {Link} from "react-router-dom";
+
+export default class CompletedService extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +16,11 @@ export default class volunteerpage extends Component {
     }
 
     componentDidMount() {
-     this.apicall()
+        this.apicall()
     }
     apicall(){
         Promise.all([
-            fetch(`http://localhost:8001/api/services/withuserinfo`),
+            fetch(`http://localhost:8001/api/services/volunteerservices`),
             //fetch("http://localhost:8001/services"),
         ])
             .then(([res1]) => {
@@ -33,42 +34,16 @@ export default class volunteerpage extends Component {
             });
     }
 
-
-
-    onAccept = (e, userInfo) => {
-
-        const id = Number(e.target.value);
-
-        const data = JSON.stringify({user_id:id , id: userInfo.id })
-        fetch('http://localhost:8001/api/services/accepted', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',       // receive json
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-            .then(res => res.json())
-            .then(data =>this.apicall())
-    };
-
-    onComplete = () => {
-        axios.get(`http://localhost:8001/api/services/volunteerservices`)
-            .then((res) =>{
-                console.log(res)
-            })
-    };
-
     render() {
         return (
             <div>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                    <Link to="/vounteerservice">AcceptedService</Link> <span className="menu__divider">|</span>
-                    <Link to="/completedservice">CompletedService</Link>
+                    <Link to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
+                    <Link to="/vounteerservice">Accepted Services</Link>
                 </Navbar>
                 <div style={{ padding: 20 }}>
-                    <Table responsive variant="dark">
+                    <Table responsive>
                         <thead>
                         <tr>
                             <th>S.No.</th>
@@ -79,7 +54,7 @@ export default class volunteerpage extends Component {
                             <th>City</th>
                             <th>Country</th>
                             <th>Phone Number</th>
-                            <th>Action</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -94,28 +69,7 @@ export default class volunteerpage extends Component {
                                 <td>{member.city}</td>
                                 <td>{member.country}</td>
                                 <td>{member.phone}</td>
-                                <td>
-                                    <Button
-                                        variant="primary"
-                                        size="sm"
-                                        onClick={ (e)=>{
-                                            this.onAccept(e, member)
-                                        }}
-                                        value={'1'}
-                                    >
-                                        {member.volunteer_user_id == 1 ? 'Complete': 'Accept'}
-                                    </Button>
-                                    {/*{"  "}
-                                    <Button
-                                        value={'1'}
-                                        variant="secondary"
-                                        size="sm"
-                                        onClick={this.onComplete}
-                                    >
-                                        Complete
-                                    </Button>*/}
 
-                                </td>
                             </tr>
                         ))}
                         </tbody>
