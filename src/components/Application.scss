@@ -10,7 +10,9 @@
   justify-content: center;
   align-items: center;
   font-family: "Open Sans", sans-serif;
- 
+  background: url("./volunteer1.png") no-repeat;
+  background-size: cover;
+  padding-bottom: 6em;
 }
 
 .App-logo {
@@ -38,6 +40,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -54,8 +57,9 @@
   margin-top: 55px;
   position: relative;
   z-index: 99;
+
   .container {
-    margin-top: 200px;
+    margin-top: 63px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,18 +68,19 @@
     border-radius: 4px;
     position: relative;
     z-index: 99;
-    width: 150%;
-    height: 120%;
+    width: 109%;
+    height: 95%;
     z-index: 99;
     padding: 17px 10px;
     //transition: transform 200ms ease-in-out;
   }
+
   .right-side {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 70%;
-    background-color: #3498db;
+    background-color: #00d8ff;
     width: 100%;
     position: absolute;
     right: -34%;
@@ -88,13 +93,16 @@
     &.right {
       right: -40%;
       align-items: flex-end;
+
       &:hover {
         right: -45%;
       }
     }
+
     &.left {
       right: 40%;
       align-items: flex-start;
+
       &:hover {
         right: 45%;
       }
@@ -110,36 +118,42 @@
   }
 }
 
-//Button
+// Button
 .btn {
   font-size: 21px;
   padding: 5px 20px;
   border: 0;
-  background-color: #3498db;
+  background-color: #00d8ff;
   color: #fff;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
   cursor: pointer;
+  margin-right: 120px;
+
   &:hover {
     background-color: #2386c8;
   }
+
   &:focus {
     outline: none;
   }
 }
-.banner{
+
+.banner {
   background-color: #333;
   overflow: hidden;
   height: 60px;
   color: #fff;
-  font-family :Impact, Charcoal, sans-serif;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: xx-large;
   text-align: center;
-  
+
 }
-.logo{
+
+.logo {
   margin-top: -3px;
 }
-.fit{
+
+.fit {
   margin-top: 190px;
 }

@@ -1,4 +1,4 @@
-:root{
+:root {
   --app-color: #00d8ff;
 }
 
@@ -162,12 +162,15 @@ input {
   width: 200px;
   webkit-padding-start: 0;
 }
-input, select{
+
+input,
+select {
   border-radius: 0 !important;
   height: 50px !important;
   font-weight: 200 !important;
   font-size: 18px !important;
 }
+
 label {
   color: black;
   font-size: 14px;
@@ -177,10 +180,12 @@ label {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .banner {
   background-color: #333;
   overflow: hidden;
@@ -196,44 +201,52 @@ label {
   margin-top: 30px;
 }
 
-.app__bar{
+.app__bar {
   padding: 1rem 1rem;
   background-color: #101d2f !important;
 }
-.app__logo{
+
+.app__logo {
   width: 70px;
 }
-.hero__banner{
+
+.hero__banner {
   position: relative;
   padding-top: 150px;
   background: url("./banner-groceries.png") no-repeat center center /cover;
 }
-.quote__banner{
+
+.quote__banner {
   position: relative;
   padding: 50px 20px;
   background: #29b6f6;
 }
-.info__container{
+
+.info__container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 20px;
 }
-.info__wrapper{
+
+.info__wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
 }
-.quote__left{
+
+.quote__left {
   flex: 0 0 66.66667%;
 }
+
 .quote__right {
   text-align: right;
   flex: 0 0 33.33333%;
   max-width: 33.33333%;
   margin-top: 20px;
 }
-.banner__heading{
+
+.banner__heading {
   position: relative;
   color: #fff;
   margin: 0 0 15px 0;
@@ -241,29 +254,34 @@ label {
   font-size: 37px;
   z-index: 2;
 }
- .card__title{
-   position: relative;
-   margin: 0 0 15px 0;
-   font-weight: 100;
-   font-size: 22px;
-   z-index: 2;
+
+.card__title {
+  position: relative;
+  margin: 0 0 15px 0;
+  font-weight: 100;
+  font-size: 22px;
+  z-index: 2;
   color: #333333;
 }
-.banner__span{
+
+.banner__span {
   font-size: 18px;
   line-height: 1.5;
   text-transform: uppercase;
   color: #ffffff;
 }
-.btn{
-  padding: 0.8rem 60px 0.8rem 60px ;
+
+.btn {
+  padding: 0.8rem 60px 0.8rem 60px;
 }
-.btn-transparent{
+
+.btn-transparent {
   background-color: transparent;
   border: 1px solid #fff;
   color: #ffffff;
 }
-.form__container{
+
+.form__container {
   position: relative;
   max-width: 1240px;
   margin-left: auto;
@@ -271,7 +289,8 @@ label {
   padding-left: 20px;
   padding-right: 20px;
 }
-.flex__form{
+
+.flex__form {
   position: relative;
   z-index: 1000;
   display: flex;
@@ -279,15 +298,17 @@ label {
   align-items: center;
   justify-content: center;
 }
-.interest__form{
+
+.interest__form {
   position: relative;
   z-index: 999;
   background-color: #ffffff;
   width: 800px;
-  box-shadow: 0 2px 25px 0 rgba(0,0,0, 0.3);
+  box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.3);
   padding: 30px 25px;
 }
-.btn__post{
+
+.btn__post {
   display: inline-block;
   border-color: #29b6f6;
   color: #29b6f6;
@@ -300,8 +321,10 @@ label {
   line-height: 1.5;
   text-transform: uppercase;
   margin-top: 2rem;
+
 }
-.post__title{
+
+.post__title {
   color: #333333;
   margin: 0;
   line-height: 42px;
@@ -309,19 +332,20 @@ label {
   font-size: 48px;
 }
 
-.cards__container{
+.cards__container {
   padding: 2rem;
 }
 
-.card__area{
+.card__area {
   position: relative;
   margin-bottom: 1rem;
 }
-.card__area:hover .skewed{
-  transform: skewX(25deg)
-  translateX(-30px) scaleX(1);
+
+.card__area:hover .skewed {
+  transform: skewX(25deg) translateX(-30px) scaleX(1);
 }
-.card{
+
+.card {
   width: 400px;
   height: 125px;
   background: #ffffff;
@@ -329,6 +353,7 @@ label {
   overflow-x: hidden;
   z-index: 10;
 }
+
 .skewed {
   position: absolute;
   width: 100px;
@@ -337,6 +362,7 @@ label {
   transform: skewX(25deg) translateX(-30px) scaleX(1);
   transform-origin: left;
 }
+
 .avatar {
   width: 100px;
   border-radius: 50%;
@@ -347,6 +373,7 @@ label {
   top: 50%;
   transform: translateY(-50%);
 }
+
 .media {
   position: absolute;
   width: 80%;
@@ -359,6 +386,7 @@ label {
   place-items: center;
   z-index: 5;
 }
+
 .list {
   display: flex;
   list-style-type: none;
@@ -367,6 +395,7 @@ label {
 .item {
   margin: 0 1rem;
 }
+
 .card-area:hover .media {
   transform: translateX(-50%) translateY(0);
 }
@@ -374,11 +403,12 @@ label {
 .content {
   margin-top: 0.7rem;
   margin-left: 9rem;
-}⸀
- .content h1,
- h6 {
-   font-weight: 100;
- }
+}
+
+⸀ .content h1,
+h6 {
+  font-weight: 100;
+}
 
 .content h6 {
   font-size: 1rem;
@@ -396,10 +426,12 @@ label {
   color: var(--app-color);
   font-weight: 300;
 }
+
 .color-white {
   color: #fff;
 }
-.posts__container{
+
+.posts__container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
