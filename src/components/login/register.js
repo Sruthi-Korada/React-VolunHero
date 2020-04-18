@@ -18,8 +18,8 @@ export default class Register extends React.Component {
             // </div> */}
             <div className="form">
               <div className="volunteer">
-               
-                I am a volunteer <input  type="checkbox" name="volunteer" />
+                Check if you are a Volunteer:{" "}
+                <input type="checkbox" name="volunteer" />
               </div>
 
               <div className="form-group">
@@ -32,7 +32,11 @@ export default class Register extends React.Component {
               </div>
               <div className="form-group">
                 {/* <label htmlFor="address">Address</label> */}
-                <input type="text" name="address" placeholder="Street Address" />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Street Address"
+                />
               </div>
               <div className="form-group">
                 {/* <label for="phone">Enter your phone number</label> */}
@@ -41,7 +45,7 @@ export default class Register extends React.Component {
                   id="phone"
                   name="phone"
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                  placeholder="Phone Number" 
+                  placeholder="Phone Number"
                 />
               </div>
               <div className="form-group">
