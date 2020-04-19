@@ -1,5 +1,4 @@
 import React from "react";
-import loginImg from "./head.png";
 import {Button} from 'react-bootstrap'
 
 export default class Register extends React.Component {
@@ -14,7 +13,7 @@ export default class Register extends React.Component {
         <div className="header">Register</div>
         <div className="content">
           <div className="image">
-            <img src={loginImg} />
+           
           </div>
           <div className="form">
           <div className="volunteer">

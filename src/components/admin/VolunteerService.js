@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Table, Button, Navbar } from "react-bootstrap";
+import React, {Component} from "react";
+import {Table, Button, Navbar} from "react-bootstrap";
 import axios from 'axios';
 import Logo from '../Pages/volun--hero.png';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+
 export default class VolunteerService extends Component {
     constructor(props) {
         super(props);
@@ -17,29 +18,27 @@ export default class VolunteerService extends Component {
     componentDidMount() {
         this.fetchVolunteersService()
     }
-    fetchVolunteersService(){
+
+    fetchVolunteersService() {
         Promise.all([
             fetch(`http://localhost:8001/api/services/volunteerservices`),
-            //fetch("http://localhost:8001/services"),
         ])
             .then(([res1]) => {
                 return Promise.all([res1.json()]);
             })
             .then(([res1]) => {
-                this.setState({ services: res1.services });
+                this.setState({services: res1.services});
             })
             .catch((err) => {
                 console.log("caught it!", err);
             });
     }
 
-
-
     onAccept = (e, userInfo) => {
 
         const id = Number(e.target.value);
 
-        const data = JSON.stringify({id: userInfo.id })
+        const data = JSON.stringify({id: userInfo.id})
         fetch('http://localhost:8001/api/services/complete', {
             method: 'POST',
             headers: {
@@ -61,7 +60,7 @@ export default class VolunteerService extends Component {
                     <Link to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
                     <Link to="/completedservice">CompletedService</Link>
                 </Navbar>
-                <div style={{ padding: 20 }}>
+                <div style={{padding: 20}}>
                     <Table responsive>
                         <thead>
                         <tr>
@@ -78,40 +77,35 @@ export default class VolunteerService extends Component {
                         </thead>
                         <tbody>
                         {this.state.services &&
-                        this.state.services.map((member, index) => (
-                            <tr key={member.id}>
-                                <td>{index + 1}</td>
-                                <td>{member.name}</td>
-                                <td>{member.description}</td>
-                                <td>{member.category}</td>
-                                <td>{member.address}</td>
-                                <td>{member.city}</td>
-                                <td>{member.country}</td>
-                                <td>{member.phone}</td>
-                                <td>
-                                    <Button
-                                        variant="primary"
-                                        size="sm"
-                                        onClick={ (e)=>{
-                                            this.onAccept(e, member)
-                                        }}
-                                        value={'1'}
-                                    >
-                                        Complete
-                                    </Button>
-                                    {/*{"  "}
-                                    <Button
-                                        value={'1'}
-                                        variant="secondary"
-                                        size="sm"
-                                        onClick={this.onComplete}
-                                    >
-                                        Complete
-                                    </Button>*/}
+                        this.state.services.map((member, index) => {
+                            if(member.is_completed == false){
+                                const rows = (<tr>
+                                    <td>{index + 1}</td>
+                                    <td>{member.name}</td>
+                                    <td>{member.description}</td>
+                                    <td>{member.category}</td>
+                                    <td>{member.address}</td>
+                                    <td>{member.city}</td>
+                                    <td>{member.country}</td>
+                                    <td>{member.phone}</td>
+                                    <td>
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                this.onAccept(e, member)
+                                            }}
+                                            value={'1'}
+                                        >
+                                            Complete
+                                        </Button>
+                                    </td>
+                                </tr>)
+                                return rows;
+                            }
 
-                                </td>
-                            </tr>
-                        ))}
+                            }
+                        )}
                         </tbody>
                     </Table>
                 </div>

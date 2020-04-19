@@ -1,211 +1,20 @@
 :root{
   --app-color: #00d8ff;
 }
-
-
-.Appl {
-  text-align: center;
-  font-family: "Century Gothic", CenturyGothic;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  padding-bottom: 100px;
-  color: black;
+body{
+  font-family: 'Nunito', sans-serif;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20vmin;
-  float: left;
-}
-
-.App-header {
-  background-color: #0d0c12;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 50px;
-}
-
-.smallbtn {
-  border: 2px solid white;
-  border-radius: 20px;
-  float: left;
-}
-
-.mainbtn {
-  border: 2px solid white;
-  font-size: 14px;
-  border-radius: 20px;
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.textfield {
-  width: 100%;
-  margin: 10px 0;
-}
-
-.notefield {
-  width: 40%;
-  height: 20%;
-  font-size: 14px;
-  margin: 5px;
-}
-
-.post-it {
-  text-align: initial;
-  font-size: 20px;
-  max-width: 30vw;
-  min-width: 100px;
-  margin: 10px;
-  display: inline-block;
-}
-
-.post-it:hover {
-  transform: rotate(1deg);
-}
-
-// .update-form {
-//   position: fixed;
-//   background-color: pink;
-//   min-height: 300px;
-//   max-height: 300px;
-//   left: 15%;
-//   right: 15%;
-//   top: 20%;
-//   bottom: 60vw;
-// }
-
-// .update-form h2 {
-//   font-size: 30px;
-//   padding-top: 10px;
-//   color: black;
-//   text-orientation: vertical;
-// }
-
-.form-background {
-  position: fixed;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 200ms;
-  opacity: 8;
-  border-radius: 50%;
-}
-
-.trash-can {
-  padding: 0 10px;
-  border: 2px solid white;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.form {
-  text-align: center;
-  font-size: 20px;
-}
-
-.wrapper {
-  display: flex;
-  padding-top: 20px;
-}
-
-h1 {
-  color: #e0dfe6;
-  font-size: calc(10px + 6vmin);
-}
-
-h2 {
-  color: white;
-  font-size: calc(10px + 2vmin);
-}
-
-h3 {
-  color: black;
-  font-size: calc(12px + 2vmin);
-}
-
-h4 {
-  color: white;
-  font-size: 13px;
-}
-
-p {
-  font-size: calc(4px + 2vmin);
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li {
-  color: black;
-}
-
-input {
-  width: 200px;
-  webkit-padding-start: 0;
-}
-input, select{
-  border-radius: 0 !important;
-  height: 50px !important;
-  font-weight: 200 !important;
-  font-size: 18px !important;
-}
-label {
-  color: black;
-  font-size: 14px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.banner {
-  background-color: #333;
-  overflow: hidden;
-  height: 60px;
-  color: #fff;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: xx-large;
-  text-align: center;
-  width: 100%;
-}
-
-.align {
-  margin-top: 30px;
-}
-
+//@author: Sruthi
 .app__bar{
-  padding: 1rem 1rem;
-  background-color: #101d2f !important;
+  padding: 0.5rem 1rem;
+  background-color: #19195c !important;
 }
 .app__logo{
-  width: 70px;
+  width: 80px;
 }
 .hero__banner{
   position: relative;
-  padding-top: 150px;
+  padding-top: 107px;
   background: url("./banner-groceries.png") no-repeat center center /cover;
 }
 .quote__banner{
@@ -248,6 +57,7 @@ label {
    font-size: 22px;
    z-index: 2;
   color: #333333;
+
 }
 .banner__span{
   font-size: 18px;
@@ -255,10 +65,8 @@ label {
   text-transform: uppercase;
   color: #ffffff;
 }
-.btn{
-  padding: 0.8rem 60px 0.8rem 60px ;
-}
-.btn-transparent{
+.help__cta{
+  padding: 1.2rem 60px 1.2rem 60px;
   background-color: transparent;
   border: 1px solid #fff;
   color: #ffffff;
@@ -296,15 +104,20 @@ label {
   vertical-align: middle;
   background-color: transparent;
   border: 1px solid;
-  font-size: 1rem;
+  size: 1rem;
   line-height: 1.5;
   text-transform: uppercase;
   margin-top: 2rem;
 }
+.btn__newservice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .post__title{
   color: #333333;
   margin: 0;
-  line-height: 42px;
+  line-height: 60px;
   font-weight: 100;
   font-size: 48px;
 }
@@ -315,7 +128,9 @@ label {
 
 .card__area{
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 5.1rem;
+  margin-right: 3rem;
+  margin-left: 1rem;
 }
 .card__area:hover .skewed{
   transform: skewX(25deg)
@@ -328,6 +143,8 @@ label {
   position: relative;
   overflow-x: hidden;
   z-index: 10;
+  border: none;
+  border-radius: 0;
 }
 .skewed {
   position: absolute;
@@ -350,7 +167,7 @@ label {
 .media {
   position: absolute;
   width: 80%;
-  height: 45px;
+  height: 53px;
   background: #bbb;
   left: 50%;
   transform: translateX(-50%) translateY(-45px);
@@ -367,13 +184,13 @@ label {
 .item {
   margin: 0 1rem;
 }
-.card-area:hover .media {
+.card__area:hover .media {
   transform: translateX(-50%) translateY(0);
 }
 
 .content {
   margin-top: 0.7rem;
-  margin-left: 9rem;
+  margin-left: 15rem;
 }⸀
  .content h1,
  h6 {
@@ -381,7 +198,7 @@ label {
  }
 
 .content h6 {
-  font-size: 1rem;
+  font-size: 1.7rem;
 }
 
 .esp {
@@ -402,7 +219,26 @@ label {
 .posts__container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 3rem;
+  background: #19195c;
+}
+.delete{
+  padding: 8px 30px;
+  border: 1px solid white;
+  background: none;
+  color: white;
+  margin: 5px 0;
+  text-align: center;
+  display: inline-block;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-right: 1rem;
+}
+.request__title{
+  font-size: 1.8rem;
+}
+.extra__note {
+  font-size: 1.8rem;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Table, Button, Navbar } from "react-bootstrap";
-import axios from 'axios';
 import Logo from '../Pages/volun--hero.png';
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 export default class volunteerpage extends Component {
@@ -20,7 +19,6 @@ export default class volunteerpage extends Component {
     apicall(){
         Promise.all([
             fetch(`http://localhost:8001/api/services/withuserinfo`),
-            //fetch("http://localhost:8001/services"),
         ])
             .then(([res1]) => {
                 return Promise.all([res1.json()]);
@@ -52,12 +50,6 @@ export default class volunteerpage extends Component {
             .then(data =>this.apicall())
     };
 
-    onComplete = () => {
-        axios.get(`http://localhost:8001/api/services/volunteerservices`)
-            .then((res) =>{
-                console.log(res)
-            })
-    };
 
     render() {
         return (
@@ -103,17 +95,9 @@ export default class volunteerpage extends Component {
                                         }}
                                         value={'1'}
                                     >
-                                        {member.volunteer_user_id == 1 ? 'Complete': 'Accept'}
+                                        Accept
                                     </Button>
-                                    {/*{"  "}
-                                    <Button
-                                        value={'1'}
-                                        variant="secondary"
-                                        size="sm"
-                                        onClick={this.onComplete}
-                                    >
-                                        Complete
-                                    </Button>*/}
+
 
                                 </td>
                             </tr>

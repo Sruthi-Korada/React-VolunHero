@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Row, Col } from "react-bootstrap";
+import {Navbar, Row, Col, Nav} from "react-bootstrap";
 
 import "./style.scss";
 import Postit from "./Postit";
@@ -16,13 +16,12 @@ class Userpage extends Component {
     };
 
     componentDidMount() {
-        this.fechServices();
+        this.fechServices();  
     }
 
     fechServices() {
         Promise.all([
-             fetch(`http://localhost:8001/api/services/withuserinfo`),
-            //fetch("http://localhost:8001/services"),
+             fetch(`http://localhost:8001/api/services/3`),
         ])
             .then(([res1]) => {
                 return Promise.all([res1.json()]);
@@ -34,7 +33,19 @@ class Userpage extends Component {
                 console.log("caught it!", err);
             });
     }
-
+    onDelete = (cardId) => {
+        const data = JSON.stringify({id: cardId})
+        fetch('http://localhost:8001/api/services/delete', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',       // receive json
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+            .then(res => res.json())
+            .then(data => this.fechServices())
+    };
     //CREATE POST
     createPostit = (description, category_id, is_completed) => {
         let postits = [...this.state.postits];
@@ -66,6 +77,7 @@ class Userpage extends Component {
                 postToEdit = post;
                 // newPostitsArray.push(post);
             }
+        
         });
 
         this.setState({
@@ -77,6 +89,7 @@ class Userpage extends Component {
 
     //UPDATE POST
     updatePostIt = (colour, title, description) => {
+
         let postits = [...this.state.postits];
         let postToEdit = this.state.postToEdit;
         postToEdit.colour = colour;
@@ -143,8 +156,11 @@ class Userpage extends Component {
                         if (p.user_id === 3)
                             return (
                                 <Postit
+                                    cardId={ p.id}
+                                    onDelete = {this.onDelete}
                                     category_id={p.category_id}
                                     description={p.description}
+                                    volunteer_user_id = {p.volunteer_user_id}
                                     key={p.key}
                                     is_completed={p.is_completed}
                                     onClick={(key) => this.findPostToEdit(p.key)}
@@ -180,7 +196,11 @@ class Userpage extends Component {
             <React.Fragment>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-
+                    <Nav className="mr-auto"></Nav>
+                    <Nav>
+                        <button className="delete">Emergency Contact: +1 508 445 9343</button>
+                        <button className="delete">SignOff</button>
+                    </Nav>
                 </Navbar>
                 <div className="hero__banner">
                     <div className="form__container">
@@ -190,29 +210,6 @@ class Userpage extends Component {
                                 </div>
                         </div>
                     </div>
-                   {/* <header className="App-header">
-                        <h1>Post your Request</h1>
-                        <h2>VolunHero are at your service</h2>
-                        <div className="wrapper">
-                            <Row>
-                                <Col>
-                                    <RequestForm createPostit={this.createPostit} />
-                                </Col>
-                                <Col>
-                                    <div
-                                        className="trash-can"
-                                        onDrop={() => this.onDrop()}
-                                        onDragOver={(e) => this.onDragOver(e)}
-                                    >
-                                        <h2> 🗑️ </h2>
-                                        <h4> drag & Drop</h4>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </div>
-                    </header>
-                    {postits}
-                    {editScreen}*/}
                 </div>
                 <div className="quote__banner">
                     <div className="info__container">
@@ -224,7 +221,7 @@ class Userpage extends Component {
                                 </span>
                             </div>
                             <div className="quote__right">
-                                <a href="#" className="btn btn-transparent">HELP US</a>
+                                <a href="#" className="help__cta">HELP US</a>
                             </div>
                         </div>
                     </div>
