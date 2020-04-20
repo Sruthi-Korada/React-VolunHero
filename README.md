@@ -33,3 +33,8 @@ Both servers run concurrently.
 
 ## Authors
 Jasmine Singh, Marta Luiz Avelino and Sruthi Korada -LighthouseLabs 2020
+
+## Screenshots
+Main Page ![“User log in on Main page”](https://github.com/Sruthikorada36/volunHero/blob/sruthi/docs/1.png)
+User Page ![“User logged in on Main page”](https://github.com/Sruthikorada36/volunHero/blob/sruthi/docs/2.png)
+Volunteer Page ![“Volunteer logged in on Main page”](https://github.com/Sruthikorada36/volunHero/blob/sruthi/docs/3.png)
