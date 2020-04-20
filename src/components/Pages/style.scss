@@ -261,10 +261,14 @@ h6 {
   color: white;
   margin: 5px 0;
   text-align: center;
-  display: inline-block;
   line-height: 1.5;
   font-weight: 300;
   margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .request__title {

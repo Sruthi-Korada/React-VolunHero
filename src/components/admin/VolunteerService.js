@@ -62,7 +62,7 @@ export default class VolunteerService extends Component {
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
                     <Link className="menu__links" to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
-                    <Link className="menu__links" to="/completedservice">Completed Service</Link>
+                    <Link className="menu__links" to="/completedservice">Completed Services</Link>
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                        <div className="delete__container">
