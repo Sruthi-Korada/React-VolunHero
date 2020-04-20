@@ -1,8 +1,7 @@
 import React from "react";
-import Button from 'components/Button';
-import loginImg from "./head.png";
 import { Redirect} from "react-router-dom"
-import axios from "axios";
+import "./login.scss";
+import LoginBanner from './login-banner.jpeg';
 
     export default class Login extends React.Component {
         constructor(props) {
@@ -13,29 +12,22 @@ import axios from "axios";
             email: '',
            password: '',
           userLoggedIn,
-          volLoggedIn
+          volLoggedIn,
+          isLogin: true
           }
           this.onChange = this.onChange.bind(this)
-         
-    this.login = this.login.bind(this);
         }
-        // login(e) {
-        // e.preventDefault()
-        // const { username, password } = this.state
-        // if(username === "A" && password === "B")
-        // this.setState({
-        //   loggedIn: true
-        // })
-        // }
-        login(e) {
+
+        login = (e) => {
         e.preventDefault()
        
         const { email, password } = this.state
         if(email === "sruthikorada@gmail.com" && password === "password")
         this.setState({
-          userLoggedIn: true
+          userLoggedIn: true,
+          
         })
-        if(email ==="volunteer@gmail.com" && password ==="password")
+        if(email ==="Marta@gmail.com" && password ==="password")
         this.setState({
           volLoggedIn: true
         })
@@ -46,43 +38,86 @@ import axios from "axios";
              [e.target.name]: e.target.value
            })
          }
-      
-        render() {
-         if(this.state.userLoggedIn){
-           return (<Redirect to={'/Userpage'}/>)
+         loginToggle = () =>{
+          this.setState({
+            isLogin: !this.state.isLogin
+          })
          }
-         if(this.state.volLoggedIn)
-         return (<Redirect to={'/volunteerpage'}/>)
-            return (
-                <div className="base-container" ref={this.props.containerRef}>
-                <div className="fit">
-                <div className="header">Login</div>
-                <div className="content">
-                  <div className="image">
-                    <img src={loginImg} att = "login"/>
-                  </div>
-                  
-                  <div className="form">
-                    <div className="form-group">
-                      <label htmlFor="email">email</label>
-                      <input type="email" name="email" placeholder="username" value={this.state.email} onChange={this.onChange } />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="password">Password</label>
-                      <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onChange } />
-                    </div>
-                  </div>
-              
-                <div className="footer">
-               
-                <Button type="submit" value="login" onClick={this.login}confirm>login</Button>
-               </div>
-              
-                
-              </div>
-              </div>
-              </div>
-            );
+        render() {
+          if(this.state.userLoggedIn){
+            return (<Redirect to={'/Userpage'}/>)
           }
+          if(this.state.volLoggedIn)
+          return (<Redirect to={'/volunteerpage'}/>)
+          const {isLogin} = this.state;
+         return(
+          <React.Fragment>
+          <div className="container__card">
+          <img className="login__card__image" src={LoginBanner} alt="" />
+<div className="login__card__content">
+<h1 className="login__card__head">VolunHero</h1>
+{
+  isLogin ?
+  <div className="login__card__wrap">
+<h2 className="login__card__title">One of the most important things you can do on this earth is to let people know they are not alone.
+</h2>
+    <div className="login__card__form">
+      <input className="login__card__input" value={this.state.email} onChange={this.onChange } name="email" type="text" placeholder="Email" />
+        <span className="login__card__icon">
+          <svg width="26" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+        <input className="login__card__input" value={this.state.password} name="password" onChange={this.onChange} type="password" placeholder="Password" />
+        <span className="login__card__icon1">
+          <svg width="26" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </span>
+        <button type="submit" className="login__card__btn" onClick={this.login}>Sign in</button>
+        <div className="login__card__reset">
+          <span className="login__card__forg">Forgot password?</span>
+          <span className="login__card__res">Reset password?</span>
+        </div>
+      </div>
+      <div className="login__card__footer">
+        <button onClick={this.loginToggle} className={!isLogin? 'login__card__signup': ''}>Sign up</button>
+        <button onClick={this.loginToggle} className={isLogin? 'login__card__signup': ''}>Sign in</button>
+      </div>
+      </div>:  
+      <div className="registration__card__wrap">
+      <h2 className="login__card__title text__align__center">One of the most important things you can do on this earth is to let people know they are not alone.</h2>
+      <div className="registration__container">
+              <div className="registraion__card__form">
+                <input className="login__card__input" type="text" name="username" placeholder="Name" />
+                <input className="login__card__input" type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+                <input className="login__card__input" type="text" name="city" placeholder="City" />
+                <input className="login__card__input" type="text" name="province" placeholder="Province" />
+              </div>
+              <div className="registraion__card__form">
+              <input className="login__card__input" name="email" placeholder="Email" />
+              <input className="login__card__input" name="address" placeholder="Address" />
+              <input className="login__card__input" type="text" name="country" placeholder="Country" />
+              <input className="login__card__input" type="password" name="test" placeholder="Password" />
+              <div className="volunteer__container">
+                  <input type="checkbox" name="volunteer" />
+                  <label htmlFor="volunteer"> I am a Volunteer</label>
+              </div>
+              </div>
+              </div>
+              <button type="submit" className="login__card__btn button__big">Sign Up</button>
+
+              <div className="login__card__footer">
+        <button onClick={this.loginToggle} className={!isLogin? 'login__card__signup': ''}>Sign up</button>
+        <button onClick={this.loginToggle} className={isLogin? 'login__card__signup': ''}>Sign in</button>
+      </div>
+              </div>
         }
-        
+      </div>
+      </div>
+        </React.Fragment>
+         )
+        }
+      }

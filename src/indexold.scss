@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 @import "~normalize.css/normalize.css";
 
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900");
@@ -10,7 +12,11 @@
 * {
   box-sizing: border-box;
 }
-
+.menu__divider{
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 body {
   font-family: $font-family;
 }
@@ -35,3 +41,4 @@ body {
     font-size: 10px;
   }
 }
+
