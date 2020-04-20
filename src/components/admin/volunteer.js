@@ -66,14 +66,14 @@ export default class volunteerpage extends Component {
             <div>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                    <Link to="/vounteerservice">Accepted Service</Link> <span className="menu__divider">|</span>
-                    <Link to="/completedservice">Completed Service</Link>
+                    <Link to="/vounteerservice">Accepted Services</Link> <span className="menu__divider">|</span>
+                    <Link to="/completedservice">Completed Services</Link>
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                        <div className="delete__container">
                         <button className="delete delete__align" onClick={()=>{
                             this.setState({redirectTo: true})
-                        }}><img src={LogoutIcon} alt="" />SignOff</button>
+                        }}><img src={LogoutIcon} alt="" />Logout</button>
                         </div>
                     </Nav>
                 </Navbar>

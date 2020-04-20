@@ -25,7 +25,7 @@ import LoginBanner from './login-banner.jpeg';
         if(email === "sruthikorada@gmail.com" && password === "password")
         this.setState({
           userLoggedIn: true,
-          volLoggedIn: true
+          
         })
         if(email ==="Marta@gmail.com" && password ==="password")
         this.setState({
@@ -55,11 +55,11 @@ import LoginBanner from './login-banner.jpeg';
           <div className="container__card">
           <img className="login__card__image" src={LoginBanner} alt="" />
 <div className="login__card__content">
-<h1 className="login__card__head">Volun</h1>
+<h1 className="login__card__head">VolunHero</h1>
 {
   isLogin ?
   <div className="login__card__wrap">
-<h2 className="login__card__title">Hero
+<h2 className="login__card__title">One of the most important things you can do on this earth is to let people know they are not alone.
 </h2>
     <div className="login__card__form">
       <input className="login__card__input" value={this.state.email} onChange={this.onChange } name="email" type="text" placeholder="Email" />
@@ -88,22 +88,22 @@ import LoginBanner from './login-banner.jpeg';
       </div>
       </div>:  
       <div className="registration__card__wrap">
-      <h2 className="login__card__title text__align__center">Hero</h2>
+      <h2 className="login__card__title text__align__center">One of the most important things you can do on this earth is to let people know they are not alone.</h2>
       <div className="registration__container">
               <div className="registraion__card__form">
-                <input className="login__card__input" type="text" name="username" placeholder="username" />
-                <input className="login__card__input" type="tel" id="phone" name="phone" placeholder="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
-                <input className="login__card__input" type="password" name="test" placeholder="password" />
-                <input className="login__card__input" type="text" name="city" placeholder="city" />
+                <input className="login__card__input" type="text" name="username" placeholder="Name" />
+                <input className="login__card__input" type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+                <input className="login__card__input" type="text" name="city" placeholder="City" />
+                <input className="login__card__input" type="text" name="province" placeholder="Province" />
               </div>
               <div className="registraion__card__form">
-              <input className="login__card__input" name="email" placeholder="email" />
-              <input className="login__card__input" name="address" placeholder="address" />
+              <input className="login__card__input" name="email" placeholder="Email" />
+              <input className="login__card__input" name="address" placeholder="Address" />
               <input className="login__card__input" type="text" name="country" placeholder="Country" />
-              <input className="login__card__input" type="text" name="province" placeholder="province" />
+              <input className="login__card__input" type="password" name="test" placeholder="Password" />
               <div className="volunteer__container">
                   <input type="checkbox" name="volunteer" />
-                  <label htmlFor="volunteer"> I'm a Volunteer</label>
+                  <label htmlFor="volunteer"> I am a Volunteer</label>
               </div>
               </div>
               </div>

@@ -9,7 +9,7 @@ class RequestForm extends React.Component {
         title: "",
         description: "",
         key: "",
-        category_id: 3,
+        category_id: 4,
         categories: [],
         is_completed: false,
         toastVisible: false
@@ -61,7 +61,7 @@ class RequestForm extends React.Component {
                         this.state.category_id,
                         this.state.description,
                     );
-                    ToastsStore.success(<h4>Request Added to Pool</h4>)
+                    ToastsStore.success(<h4>You have made a request!</h4>)
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -88,7 +88,7 @@ class RequestForm extends React.Component {
         
         return (
             <div>
-                <h2 className="post__title">Post Your Service</h2>
+                <h2 className="post__title">Submit your Request</h2>
                 <p>{this.state.errorMessage}</p>
                 <Form className="form">
                     <Row>
@@ -115,7 +115,7 @@ class RequestForm extends React.Component {
                         <Col>
                             <Form.Control
                                 className="extra__note"
-                                placeholder="Extra Notes"
+                                placeholder="Description"
                                 value={this.state.description}
                                 onChange={(e) => this.setState({description: e.target.value})}
                             />

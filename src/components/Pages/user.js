@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import{Redirect} from 'react-router-dom'
 import {Navbar, Row, Col, Nav} from "react-bootstrap";
-
+import LogoutIcon from '../admin/logout.png'
 import "./style.scss";
 import Postit from "./Postit";
 import UpdateForm from "./UpdateForm";
@@ -122,34 +122,9 @@ class Userpage extends Component {
 
     // Need to: Refractor & combine with findPostToEdit
     // FINDS DRAGGED POST AND SAVES IT READY FOR DELETE
-    onDragStart = (key) => {
-        let postits = [...this.state.postits];
-        let postToEdit = {};
-        postits.forEach((post) => {
-            if (post.key === key) {
-                postToEdit = post;
-            }
-            this.setState({ postToEdit: postToEdit });
-        });
-    };
+  
 
-    onDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    //DELETES POST OnDrop
-    onDrop = () => {
-        let key = this.state.postToEdit.key;
-        let newPostitsArray = [];
-        let postits = [...this.state.postits];
-        postits.forEach((post) => {
-            if (post.key !== key) {
-                newPostitsArray.push(post);
-            } else {
-            }
-        });
-        this.setState({ postits: newPostitsArray });
-    };
+ 
   
     render() {
         if(this.state.redirectTo == true){
@@ -181,22 +156,7 @@ class Userpage extends Component {
             </React.Fragment>
         );
 
-        //EDIT SCREEN VIEW
-        let editScreen;
-        if (this.state.toggleEditScreen) {
-            editScreen = (
-                <UpdateForm
-                    colour={this.state.postToEdit.colour}
-                    title={this.state.postToEdit.title}
-                    description={this.state.postToEdit.description}
-                    key={this.state.postToEdit.key}
-                    show={this.state.toggleEditScreen}
-                    updatePostIt={this.updatePostIt}
-                    onClose={this.toggleEditScreen}
-                />
-            );
-        }
-
+        
         //THE RETURN BLOCK
         return (
             <React.Fragment>
@@ -204,10 +164,10 @@ class Userpage extends Component {
                     <img className="app__logo" src={Logo}/>
                     <Nav className="mr-auto"></Nav>
                     <Nav>
-                        <button className="delete">Emergency Contact: +1 508 445 9343</button>
+                        <button className="delete">Emergency Contact: +1 555 555 5555</button>
                         <button className="delete" onClick={()=>{
                             this.setState({redirectTo: true})
-                        }}>SignOff</button>
+                        }}><img src={LogoutIcon} alt="" />Logout</button>
                     </Nav>
                 </Navbar>
                 <div className="hero__banner">
