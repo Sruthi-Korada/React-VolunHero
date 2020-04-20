@@ -1,5 +1,6 @@
 import React from "react";
 import {Form, Row, Col, Button} from "react-bootstrap";
+import {ToastsContainer, ToastsStore,ToastsContainerPosition } from 'react-toasts';
 
 class RequestForm extends React.Component {
     state = {
@@ -10,9 +11,9 @@ class RequestForm extends React.Component {
         key: "",
         category_id: 3,
         categories: [],
-        is_completed: false
+        is_completed: false,
+        toastVisible: false
     };
-
 
     componentDidMount() {
         Promise.all([fetch("http://localhost:8001/api/categories")])
@@ -46,7 +47,6 @@ class RequestForm extends React.Component {
 
             };
 
-            // http://localhost:8001/api/services/create
             fetch("http://localhost:8001/api/services/create", {
                 method: "POST",
                 headers: {
@@ -56,13 +56,12 @@ class RequestForm extends React.Component {
             })
                 .then((response) => response.json())
                 .then((data) => {
-
+                    
                     this.props.createPostit(
                         this.state.category_id,
                         this.state.description,
-
                     );
-                    console.log("Success:", data);
+                    ToastsStore.success(<h4>Request Added to Pool</h4>)
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -70,9 +69,23 @@ class RequestForm extends React.Component {
         }
         console.log(this.state);
     };
-
+    fechServices() {
+        Promise.all([
+            fetch(`http://localhost:8001/api/services/delete`),
+        ])
+            .then(([res1]) => {
+                return Promise.all([res1.json()]);
+            })
+            .then(([res1]) => {
+                this.setState({ postits: res1.services });
+            })
+            .catch((err) => {
+                console.log("caught it!", err);
+            });
+    }
     render() {
         const {categories} = this.state;
+        
         return (
             <div>
                 <h2 className="post__title">Post Your Service</h2>
@@ -81,9 +94,9 @@ class RequestForm extends React.Component {
                     <Row>
                         <Col>
                             <Form.Control
-
+                                className="request__title"
                                 as="select"
-                                placeholder="Title (required*)"
+                               placeholder="Title (required*)"
                                 value={this.state.title}
                                 onChange={(e) => {
 
@@ -97,73 +110,35 @@ class RequestForm extends React.Component {
                                 categories.map((c) => (
                                     <option id={c.id} key={c.id}>{c.category}</option>
                                 ))}
-                                {/* <option>Grocery/Drugs Pickup</option>
-                <option>Pet Groming</option>
-                <option>Gardening</option>
-                <option> Grocery Shopping</option> */}
                             </Form.Control>
                         </Col>
                         <Col>
                             <Form.Control
+                                className="extra__note"
                                 placeholder="Extra Notes"
                                 value={this.state.description}
                                 onChange={(e) => this.setState({description: e.target.value})}
                             />
                         </Col>
                     </Row>
-
+                    <div className="btn__newservice">
                     <button
                         className="btn__post"
                         type="submit"
                         size="sm"
-                        onClick={(e) => this.onSubmit(e)}
-                    >
+                        onClick={(e) => {
+                        
+                            this.onSubmit(e);
+                           
+                        }}>
                         New Service
                     </button>
+                    </div>
                 </Form>
+                <ToastsContainer position={ToastsContainerPosition.TOP_RIGHT} store={ToastsStore}/>
             </div>
         );
     }
 }
 
 export default RequestForm;
-
-// <input
-//             list="tittle"
-//             className="textfield"
-//             placeholder="Title (required*)"
-//             value={this.state.title}
-//             onChange={(e) => this.setState({ title: e.target.value })}
-//           />
-//           <datalist id="tittle">
-//             <option value="" disabled selected>
-//               Pick-your-service
-//             </option>
-//             <option>Grocery/Drugs Pickup</option>
-//             <option>Pet Groming</option>
-//             <option>Gardening</option>
-//             <option> Grocery Shopping</option>
-//           </datalist>
-//           <input
-//             type="text"
-//             className="textfield"
-//             placeholder="Extra Notes"
-//             value={this.state.description}
-//             onChange={(e) => this.setState({ description: e.target.value })}
-//           />
-
-//           <select
-//             className="textfield"
-//             onChange={(e) => this.setState({ colour: e.target.value })}
-//           >
-//             <option value="" disabled selected>
-//               Post-it Colour
-//             </option>
-//             <option value="pink">Pink</option>
-//             <option value="blue">Blue</option>
-//             <option value="yellow">Yellow</option>
-//             <option value="green">Green</option>
-//           </select>
-/* <button className="mainbtn" onClick={(e) => this.onSubmit(e)}>
-          Add Post-it
-        </button> */

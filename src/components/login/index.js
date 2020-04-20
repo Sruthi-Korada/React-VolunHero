@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import "components/login/styles.scss";
 import "components/Application.scss";
 import Login from "components/login/login";
@@ -21,6 +22,10 @@ const RightSide = (props) => {
     </div>
   );
 };
+=======
+import Login from "components/login/login"
+
+>>>>>>> 0fd54ba8ba7b556a66179be2e2dfd3f28aebba4c
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
@@ -29,14 +34,8 @@ class Homepage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    //Add .right by default
-    this.rightSide.classList.add("right");
-  }
 
-  changeState() {
-    const { isLogginActive } = this.state;
-
+<<<<<<< HEAD
     if (isLogginActive) {
       this.rightSide.classList.remove("right");
       this.rightSide.classList.add("left");
@@ -79,6 +78,14 @@ class Homepage extends React.Component {
           </div>
         </div>
       </div>
+=======
+  render() {  
+    return (
+        <React.Fragment>
+            <Login/>
+       </React.Fragment>
+
+>>>>>>> 0fd54ba8ba7b556a66179be2e2dfd3f28aebba4c
     );
   }
 }

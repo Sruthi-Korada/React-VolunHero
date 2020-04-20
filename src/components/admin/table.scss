@@ -1,0 +1,54 @@
+.services__table{
+    margin-bottom: 5rem;
+}
+.services__header{
+    width: 200px;
+}
+.table-responsive{
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border-radius: 12px;
+}
+.button_admin_cta{
+    padding: 1rem 2rem;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    background: #19195c;
+    border: 1px solid #19195c
+}
+table.services__table th {
+    background-color: #6c7ae0;
+    color: #ffffff;
+    padding: 2rem 1rem
+}
+.table.services__table tr:nth-child(even){
+    background-color: #f8f6ff;
+}
+.menu__divider{
+    color: white;
+    margin: 0 2rem;
+}
+.app__bar > a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.not__found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+    border: 2px solid #6c7ae0;
+}
+.delete__align{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+.delete > img{
+    width: 20px;
+    margin-right: 1rem;
+}

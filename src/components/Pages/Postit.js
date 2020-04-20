@@ -21,9 +21,21 @@ const Postit = (props) => {
                     <div className="skewed bg-react"></div>
                     <div className="content">
                         <h1 className="card__title">{categories && categories[props.category_id - 1]}</h1>
-                        <h6>{props.description}</h6>
-                        <p className="esp text-react">{props.is_completed ? 'Completed' : 'Pending'}</p>
+                        <h6 title={props.description}>{props.description.substr(0, 30) + '...'}</h6>
+                        {
+                            props.is_completed == false && props.volunteer_user_id == null
+                                ? 'Pending': props.is_completed == false && props.volunteer_user_id != null ?  'Accepted': 'Completed'
+                        }
                     </div>
+                </div>
+                <div className="media bg-react">
+                    <ul className="list">
+                        <li className="item">
+                            <button onClick={()=>{
+                                props.onDelete(props.cardId)
+                            }} className="delete">Delete</button>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
