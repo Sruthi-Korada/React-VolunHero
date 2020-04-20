@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { Table, Button, Navbar } from "react-bootstrap";
+import NProgress from 'nprogress';
+import { Table, Button, Navbar, Nav } from "react-bootstrap";
 import Logo from '../Pages/volun--hero.png';
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
+import LogoutIcon from './logout.png'
+import './table.scss'
+import Footer from '../commons/Footer';
 export default class volunteerpage extends Component {
     constructor(props) {
         super(props);
@@ -9,11 +13,13 @@ export default class volunteerpage extends Component {
             services: [],
             users: {},
             categories: {},
-            isDataFetched: false
+            isDataFetched: false,
+            redirectTo: false
         };
     }
 
     componentDidMount() {
+        NProgress.start();
      this.apicall()
     }
     apicall(){
@@ -25,6 +31,7 @@ export default class volunteerpage extends Component {
             })
             .then(([res1]) => {
                 this.setState({ services: res1.services });
+                NProgress.done();
             })
             .catch((err) => {
                 console.log("caught it!", err);
@@ -52,20 +59,31 @@ export default class volunteerpage extends Component {
 
 
     render() {
+        if(this.state.redirectTo == true){
+            return (<Redirect to="/" />)
+        }
         return (
             <div>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                    <Link to="/vounteerservice">AcceptedService</Link> <span className="menu__divider">|</span>
-                    <Link to="/completedservice">CompletedService</Link>
+                    <Link to="/vounteerservice">Accepted Service</Link> <span className="menu__divider">|</span>
+                    <Link to="/completedservice">Completed Service</Link>
+                    <Nav className="mr-auto"></Nav>
+                    <Nav>
+                       <div className="delete__container">
+                        <button className="delete delete__align" onClick={()=>{
+                            this.setState({redirectTo: true})
+                        }}><img src={LogoutIcon} alt="" />SignOff</button>
+                        </div>
+                    </Nav>
                 </Navbar>
                 <div style={{ padding: 20 }}>
-                    <Table responsive variant="dark">
+                    <Table  className="services__table" responsive>
                         <thead>
                         <tr>
                             <th>S.No.</th>
                             <th>Name</th>
-                            <th>Services</th>
+                            <th className="services__header">Services</th>
                             <th>Category</th>
                             <th>Address</th>
                             <th>City</th>
@@ -80,7 +98,7 @@ export default class volunteerpage extends Component {
                             <tr key={member.id}>
                                 <td>{index + 1}</td>
                                 <td>{member.name}</td>
-                                <td>{member.description}</td>
+                                <td className="services__header">{member.description}</td>
                                 <td>{member.category}</td>
                                 <td>{member.address}</td>
                                 <td>{member.city}</td>
@@ -88,6 +106,7 @@ export default class volunteerpage extends Component {
                                 <td>{member.phone}</td>
                                 <td>
                                     <Button
+                                    className="button_admin_cta"
                                         variant="primary"
                                         size="sm"
                                         onClick={ (e)=>{
@@ -105,6 +124,7 @@ export default class volunteerpage extends Component {
                         </tbody>
                     </Table>
                 </div>
+                <Footer />
             </div>
         );
     }

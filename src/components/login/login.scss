@@ -222,4 +222,11 @@
       margin-top: 4em;
     }
   }
-  
+  .volunteer__container{
+    display: flex;
+    & input{
+      width: 20px;
+     height: 24px;
+     margin-right: 10px;
+    }
+  }

@@ -1,0 +1,13 @@
+.footer__container{
+    position: fixed;
+    bottom:0;
+    padding: 1.5rem 1rem;
+    background-color: #19195c !important;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    & h4{
+        color: #ffffff;
+    }
+}

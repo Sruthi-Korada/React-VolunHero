@@ -1,7 +1,12 @@
 import React, {Component} from "react";
-import {Table, Navbar} from "react-bootstrap";
+import NProgress from 'nprogress';
+import {Table, Navbar, Nav} from "react-bootstrap";
 import Logo from '../Pages/volun--hero.png';
 import {Link} from "react-router-dom";
+import LogoutIcon from './logout.png';
+import Footer from '../commons/Footer';
+
+
 
 export default class CompletedService extends Component {
     constructor(props) {
@@ -15,6 +20,7 @@ export default class CompletedService extends Component {
     }
 
     componentDidMount() {
+        NProgress.start();
         this.apicall()
     }
 
@@ -27,6 +33,7 @@ export default class CompletedService extends Component {
                 return Promise.all([res1.json()]);
             })
             .then(([res1]) => {
+                NProgress.done();
                 this.setState({services: res1.services});
             })
             .catch((err) => {
@@ -41,14 +48,22 @@ export default class CompletedService extends Component {
                     <img className="app__logo" src={Logo}/>
                     <Link to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
                     <Link to="/vounteerservice">Accepted Services</Link>
+                    <Nav className="mr-auto"></Nav>
+                    <Nav>
+                       <div className="delete__container">
+                        <button className="delete delete__align" onClick={()=>{
+                            this.setState({redirectTo: true})
+                        }}><img src={LogoutIcon} alt="" />SignOff</button>
+                        </div>
+                    </Nav>
                 </Navbar>
                 <div style={{padding: 20}}>
-                    <Table responsive>
+                    <Table responsive className="services__table">
                         <thead>
                         <tr>
                             <th>S.No.</th>
                             <th>Name</th>
-                            <th>Services</th>
+                            <th className="services__header">Services</th>
                             <th>Category</th>
                             <th>Address</th>
                             <th>City</th>
@@ -65,7 +80,7 @@ export default class CompletedService extends Component {
                                         <tr>
                                             <td>{index + 1}</td>
                                             <td>{member.name}</td>
-                                            <td>{member.description}</td>
+                                            <td className="services__header">{member.description}</td>
                                             <td>{member.category}</td>
                                             <td>{member.address}</td>
                                             <td>{member.city}</td>
@@ -81,6 +96,7 @@ export default class CompletedService extends Component {
                         </tbody>
                     </Table>
                 </div>
+                <Footer/>
             </div>
         );
     }

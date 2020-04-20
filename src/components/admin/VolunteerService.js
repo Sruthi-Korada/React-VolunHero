@@ -1,8 +1,12 @@
 import React, {Component} from "react";
-import {Table, Button, Navbar} from "react-bootstrap";
+import NProgress from 'nprogress';
+import {Table, Button, Navbar, Nav} from "react-bootstrap";
 import axios from 'axios';
 import Logo from '../Pages/volun--hero.png';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import LogoutIcon from './logout.png'
+import Footer from '../commons/Footer';
+
 
 export default class VolunteerService extends Component {
     constructor(props) {
@@ -11,11 +15,13 @@ export default class VolunteerService extends Component {
             services: [],
             users: {},
             categories: {},
-            isDataFetched: false
+            isDataFetched: false,
+            isRecordsFound: false
         };
     }
 
     componentDidMount() {
+        NProgress.start()
         this.fetchVolunteersService()
     }
 
@@ -27,7 +33,9 @@ export default class VolunteerService extends Component {
                 return Promise.all([res1.json()]);
             })
             .then(([res1]) => {
+                NProgress.done()
                 this.setState({services: res1.services});
+               
             })
             .catch((err) => {
                 console.log("caught it!", err);
@@ -35,9 +43,7 @@ export default class VolunteerService extends Component {
     }
 
     onAccept = (e, userInfo) => {
-
         const id = Number(e.target.value);
-
         const data = JSON.stringify({id: userInfo.id})
         fetch('http://localhost:8001/api/services/complete', {
             method: 'POST',
@@ -50,25 +56,31 @@ export default class VolunteerService extends Component {
             .then(res => res.json())
             .then(data => this.fetchVolunteersService())
     };
-
-
     render() {
         return (
             <div>
                 <Navbar bg="primary" variant="dark" className="app__bar">
                     <img className="app__logo" src={Logo}/>
-                    <Link to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
-                    <Link to="/completedservice">CompletedService</Link>
+                    <Link className="menu__links" to="/volunteerpage">Services</Link> <span className="menu__divider">|</span>
+                    <Link className="menu__links" to="/completedservice">Completed Service</Link>
+                    <Nav className="mr-auto"></Nav>
+                    <Nav>
+                       <div className="delete__container">
+                        <button className="delete delete__align" onClick={()=>{
+                            this.setState({redirectTo: true})
+                        }}><img src={LogoutIcon} alt="" />SignOff</button>
+                        </div>
+                    </Nav>
                 </Navbar>
                 <div style={{padding: 20}}>
-                    <Table responsive>
+                    <Table responsive className="services__table">
                         <thead>
                         <tr>
                             <th>S.No.</th>
                             <th>Name</th>
                             <th>Services</th>
                             <th>Category</th>
-                            <th>Address</th>
+                            <th className="services__header">Address</th>
                             <th>City</th>
                             <th>Country</th>
                             <th>Phone Number</th>
@@ -79,10 +91,10 @@ export default class VolunteerService extends Component {
                         {this.state.services &&
                         this.state.services.map((member, index) => {
                             if(member.is_completed == false){
-                                const rows = (<tr>
+                                const rows = (<tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{member.name}</td>
-                                    <td>{member.description}</td>
+                                    <td className="services__header">{member.description}</td>
                                     <td>{member.category}</td>
                                     <td>{member.address}</td>
                                     <td>{member.city}</td>
@@ -90,6 +102,7 @@ export default class VolunteerService extends Component {
                                     <td>{member.phone}</td>
                                     <td>
                                         <Button
+                                        className="button_admin_cta"
                                             variant="primary"
                                             size="sm"
                                             onClick={(e) => {
@@ -103,12 +116,12 @@ export default class VolunteerService extends Component {
                                 </tr>)
                                 return rows;
                             }
-
-                            }
-                        )}
+                            })
+                        }
                         </tbody>
                     </Table>
                 </div>
+                <Footer/>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import {Form, Row, Col, Button} from "react-bootstrap";
+import {ToastsContainer, ToastsStore,ToastsContainerPosition } from 'react-toasts';
 
 class RequestForm extends React.Component {
     state = {
@@ -10,9 +11,9 @@ class RequestForm extends React.Component {
         key: "",
         category_id: 3,
         categories: [],
-        is_completed: false
+        is_completed: false,
+        toastVisible: false
     };
-
 
     componentDidMount() {
         Promise.all([fetch("http://localhost:8001/api/categories")])
@@ -55,13 +56,12 @@ class RequestForm extends React.Component {
             })
                 .then((response) => response.json())
                 .then((data) => {
-
+                    
                     this.props.createPostit(
                         this.state.category_id,
                         this.state.description,
-
                     );
-                    console.log("Success:", data);
+                    ToastsStore.success(<h4>Request Added to Pool</h4>)
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -85,6 +85,7 @@ class RequestForm extends React.Component {
     }
     render() {
         const {categories} = this.state;
+        
         return (
             <div>
                 <h2 className="post__title">Post Your Service</h2>
@@ -125,11 +126,16 @@ class RequestForm extends React.Component {
                         className="btn__post"
                         type="submit"
                         size="sm"
-                        onClick={(e) => this.onSubmit(e)}>
+                        onClick={(e) => {
+                        
+                            this.onSubmit(e);
+                           
+                        }}>
                         New Service
                     </button>
                     </div>
                 </Form>
+                <ToastsContainer position={ToastsContainerPosition.TOP_RIGHT} store={ToastsStore}/>
             </div>
         );
     }

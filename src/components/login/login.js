@@ -27,7 +27,7 @@ import LoginBanner from './login-banner.jpeg';
           userLoggedIn: true,
           volLoggedIn: true
         })
-        if(email ==="volunteer@gmail.com" && password ==="password")
+        if(email ==="Marta@gmail.com" && password ==="password")
         this.setState({
           volLoggedIn: true
         })
@@ -101,6 +101,10 @@ import LoginBanner from './login-banner.jpeg';
               <input className="login__card__input" name="address" placeholder="address" />
               <input className="login__card__input" type="text" name="country" placeholder="Country" />
               <input className="login__card__input" type="text" name="province" placeholder="province" />
+              <div className="volunteer__container">
+                  <input type="checkbox" name="volunteer" />
+                  <label htmlFor="volunteer"> I'm a Volunteer</label>
+              </div>
               </div>
               </div>
               <button type="submit" className="login__card__btn button__big">Sign Up</button>

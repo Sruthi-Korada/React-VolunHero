@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import{Redirect} from 'react-router-dom'
 import {Navbar, Row, Col, Nav} from "react-bootstrap";
 
 import "./style.scss";
@@ -7,12 +8,15 @@ import UpdateForm from "./UpdateForm";
 import RequestForm from "./RequestForm";
 import Axios from "axios";
 import Logo from './volun--hero.png'
+import Footer from '../commons/Footer';
+
 
 class Userpage extends Component {
     state = {
         postits: [],
         toggleEditScreen: false,
         postToEdit: undefined,
+        redirectTo: false
     };
 
     componentDidMount() {
@@ -146,9 +150,11 @@ class Userpage extends Component {
         });
         this.setState({ postits: newPostitsArray });
     };
-
+  
     render() {
-        console.log('posits', this.state.postits);
+        if(this.state.redirectTo == true){
+            return (<Redirect to="/" />)
+        }
         let postits = (
             <React.Fragment>
                 {this.state.postits && this.state.postits
@@ -199,7 +205,9 @@ class Userpage extends Component {
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                         <button className="delete">Emergency Contact: +1 508 445 9343</button>
-                        <button className="delete">SignOff</button>
+                        <button className="delete" onClick={()=>{
+                            this.setState({redirectTo: true})
+                        }}>SignOff</button>
                     </Nav>
                 </Navbar>
                 <div className="hero__banner">
@@ -229,6 +237,7 @@ class Userpage extends Component {
                 <div className="posts__container">
                     {postits}
                 </div>
+                <Footer />
             </React.Fragment>
         );
     }
