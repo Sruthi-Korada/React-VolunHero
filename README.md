@@ -32,7 +32,7 @@ Express is the basis for the VolunHero API server application (https://github.co
 Both servers run concurrently.
 
 ## Authors
-- Sruthi Korada - React UI and Front-end
+- Sruthi Korada - React UI ,Front-end and API calls
 - Jasmine Singh - Database ,SQL Queries
 - Marta Luiz Avelino- Backend Express and node 
 
